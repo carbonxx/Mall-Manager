@@ -73,9 +73,9 @@ nav ul li a:hover{
     border-radius: 1.5rem;
     display: inline-block;
     font-size: 1.5rem;
-    font-weight: 400;
+    font-weight: 700;
     text-decoration: none;
-    color: #232d60;
+    color: #ffff;
     background: linear-gradient(45deg,#83a8f7,#e41a9a);
     box-shadow: .3rem .8rem 2.2rem rgba(105, 30, 75, 0.15);
     /* padding: 0.8rem 2.5rem; */
