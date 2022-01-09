@@ -5,24 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="static/style.css"/>
   </head>
   <body>
-    <center><h1>Student Login Form</h1></center>
-    <form>
+    <h1>Student Login Form</h1>
+    <form action="/" method="post">
       <div class="container">
-        <label>Username : </label>
+        <label>Employee Id : </label>
         <input
-          type="text"
+          type="number"
           placeholder="Enter Username"
-          name="username"
+          name="empid"
           required
         />
         <label>Password : </label>
         <input
           type="password"
           placeholder="Enter Password"
-          name="password"
+          name="epass"
           required
         />
         <button type="submit">Login</button>
