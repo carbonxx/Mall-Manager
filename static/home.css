@@ -4,7 +4,7 @@
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
-    overflow: hidden;
+    /* overflow: hidden; */
     font-family: 'Lora', serif;
   }
   
@@ -68,7 +68,7 @@ nav ul li a:hover{
 
 .addcustomer{
     position:relative;
-    right: 3rem;
+    right: 6rem;
     padding: 1.5rem;
     border-radius: 1.5rem;
     display: inline-block;
@@ -85,11 +85,39 @@ nav ul li a:hover{
     cursor: pointer;
 }
 
-
 .addcustomer:hover{
     background: linear-gradient(45deg,#e41a9a,#6692f3);
     border: one;
     color: #393c49;
+}
+
+.logout{
+    position:relative;
+    right: 0;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: linear-gradient(45deg,#83a8f7,#e41a9a);
+    box-shadow: .3rem .8rem 2.2rem rgba(105, 30, 75, 0.15);
+    /* padding: 0.8rem 2.5rem; */
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    border: none;
+    cursor: pointer;
+}
+
+.logout a:hover{
+    /* background: linear-gradient(45deg,#e41a9a,#6692f3); */
+    border: one;
+    color: #393c49;
+}
+
+.logout a{
+    color: #ffff;
+    text-decoration: none;
 }
 
 .content h1{
