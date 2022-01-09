@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration form</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="static/register.css">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora&family=Source+Sans+Pro:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/css/register.css" />
+  </head>
 
-<body>
+  <body>
     <!-- <div class="container">
         <div? class="leftside">
             <div class="register">
@@ -43,37 +45,55 @@
        </div>
     </div> -->
     <section>
-        <div class="imgbox">
-          <img src="static/images/regimg.png" class="regimg">
+      <div class="imgbox">
+        <img src="static/images/regimg.png" class="regimg" />
+      </div>
+      <div class="contentbox">
+        <div class="formbox">
+          <h2>Register Here</h2>
+          <form id="register" action="/register" method="POST">
+            <div class="container">
+              <label>Employee Id</label>
+              <input
+                type="text"
+                name="empid"
+                id="name"
+                placeholder="Enter the employee ID"
+              />
+            </div>
+            <div class="container">
+              <label>Employee Name</label>
+              <input
+                type="text"
+                name="empname"
+                id="name"
+                placeholder="Enter the employee name"
+              />
+            </div>
+            <div class="container">
+              <label>Address</label>
+              <input
+                type="text"
+                name="address"
+                id="name"
+                placeholder="Enter the your address"
+              />
+            </div>
+            <div class="container">
+              <label>Password</label>
+              <input
+                type="password"
+                name="epass"
+                id="name"
+                placeholder="Enter your password"
+              />
+            </div>
+            <div class="container">
+              <input type="submit" name="submit" value="Register" id="submit" />
+            </div>
+          </form>
         </div>
-        <div class="contentbox">
-          <div class="formbox">
-            <h2>Register Here</h2>
-            <form id="register" action="/register" method="POST">
-                <div class="container">
-                <label>Employee Id</label>
-                <input type="text" name="empid" id="name" placeholder="Enter the employee ID">
-                </div>
-                <div class="container">
-                <label>Employee Name</label>
-                <input type="text" name="empname" id="name" placeholder="Enter the employee name">
-                </div>
-                <div class="container">
-                <label>Address</label>
-                <input type="text" name="address" id="name" placeholder="Enter the your address">
-                </div>
-                <div class="container">
-                <label>Password</label>
-                <input type="password" name="epass" id="name" placeholder="Enter your password">
-                </div>
-                <div class="container">
-                <input type="submit" name="submit" value="Register" id="submit">
-                </div>
-            </form>
-          </div>
-        </div>
-      </section>
-
-</body>
-
+      </div>
+    </section>
+  </body>
 </html>
