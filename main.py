@@ -100,7 +100,30 @@ def logout():
     logout_user()
     return render_template('login.html')
 
-    
+@app.route('/stationary')
+def stationary():
+    return render_template('stationary.html')
+
+@app.route('/med')
+def med():
+    return render_template('med.html')
+
+@app.route('/toys')
+def toys():
+    return render_template('toys.html')
+
+@app.route('/bakery')
+def bakery():
+    return render_template('bakery.html')
+
+@app.route('/clothing')
+def clothing():
+    return render_template('clothing.html')
+
+@app.route('/grocery')
+def grocery():
+    return render_template('grocery.html') 
+
 app.run(debug=True)
 
 # @app.route('/test')
