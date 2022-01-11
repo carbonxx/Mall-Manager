@@ -134,4 +134,3 @@ app.run(debug=True)
     #     return 'db connected'
     # except:
     #     return 'not connected'
-
