@@ -23,7 +23,7 @@ def load_user(empid):
 
 
 
-#database name = cashandcarry
+database name = cashandcarry
 
 #loading the db to main.py file
 #app.config['SQLALCHEMY_DATABASE_URL']='mysql://username:passwllord@localhost/databse_table_name'
@@ -101,7 +101,7 @@ def logout():
     return render_template('login.html')
 
     
-app.run(debug=True)
+#app.run(debug=True)
 
 # @app.route('/test')
 # def test():
@@ -112,3 +112,26 @@ app.run(debug=True)
     # except:
     #     return 'not connected'
 
+
+#testinngz
+# from flask import Flask,render_template
+# from flask_sqlachemy import SQLAlchemy
+
+# #my db connection
+# local_server = True
+# app = Flask(__name__)
+# app.secret_key='yolo'
+
+# app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/cashandcarry'
+# db=SQLAlchemy(app)
+
+
+
+# @app.route('/')
+# def test():
+#     return render_template('test.html')
+#     try:
+#         test.query.all()
+#         return 'db connected'
+#     except:
+#         return 'not connected'
