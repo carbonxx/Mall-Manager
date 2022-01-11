@@ -1,11 +1,11 @@
 /* #48A3B7 */
-
 * {
     padding: 0;
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     /* overflow: hidden; */
+    overflow-x: hidden;
     font-family: 'Lora', serif;
     scroll-behavior: smooth;
   }
@@ -48,7 +48,6 @@
 }
 
 h4{
-  /* width: 16rem; */
   top: 3rem;
   font-size: 3rem;
 }
@@ -70,7 +69,6 @@ nav ul li a{
     text-decoration: none;
     font-size: 1.7rem;
     font-weight: 600;
-    /* margin-left: 2.5rem; */
     transition: all 0.3s ease;
     display: block;
     padding: 1em;
@@ -93,7 +91,6 @@ nav ul li a:hover{
     color: #ffff;
     background: linear-gradient(45deg,#83a8f7,#e41a9a);
     box-shadow: .3rem .8rem 2.2rem rgba(105, 30, 75, 0.15);
-    /* padding: 0.8rem 2.5rem; */
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     border: none;
@@ -117,7 +114,6 @@ nav ul li a:hover{
     text-decoration: none;
     background: linear-gradient(45deg,#83a8f7,#e41a9a);
     box-shadow: .3rem .8rem 2.2rem rgba(105, 30, 75, 0.15);
-    /* padding: 0.8rem 2.5rem; */
     text-transform: uppercase;
     letter-spacing: 0.2rem;
     border: none;
@@ -125,7 +121,6 @@ nav ul li a:hover{
 }
 
 .logout a:hover{
-    /* background: linear-gradient(45deg,#e41a9a,#6692f3); */
     border: none;
     color: #393c49;
 }
@@ -154,6 +149,8 @@ nav ul li a:hover{
     padding-bottom: 2rem;
 }
 
+ /* categorypage */
+
 .categories{
     position: relative;
     top: 0;
@@ -163,6 +160,7 @@ nav ul li a:hover{
     align-items: center;
     min-height: 100vh;
     padding-top: 3rem;
+    padding-bottom: 40rem;
 }
 
 .grid{
@@ -265,5 +263,54 @@ nav ul li a:hover{
 .visitbtn a:hover{
     text-decoration: none;
     color: #232d60;
+}
+
+/* footersection */
+
+footer{
+    background:url(./images/back.png);
+    height: auto;
+    width: 100vw;
+    padding-top: 4rem;
+    color: #232d60;
+}
+
+.contact .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.contact .content h2{
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 3rem;
+}
+
+.contact .content p{
+    max-width: 50rem;
+    margin: 2rem auto;
+    line-height: 2.8rem;
+    font-size: 1.5rem;
+}
+
+.copyright{
+    width: 100vw;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.copyright p{
+    font-size: 1.4rem;
+    word-spacing: .2rem;
+    text-transform: capitalize;
+}
+
+.copyright span{
+    text-transform: uppercase;
+    opacity: .9;
+    font-weight: bolder;
 }
 
