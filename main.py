@@ -6,13 +6,18 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
-from pymsgbox import *
+import pymsgbox
+from flask_cors import CORS
+
 
 
 # my db connection
 local_server=True # setting localserver
 app = Flask(__name__)
 app.secret_key="swathi"
+
+CORS(app, supports_credentials=True, resources={r"/": {"origins": ""}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 #this is for getting unique employee access
 login_manager=LoginManager(app)
@@ -72,7 +77,7 @@ def login():
 
         else:
             #print('Invalid credentials')
-            alert(text='Invalid credentials', title='Message Alert', button='OK')
+            pymsgbox.alert(text='Invalid credentials', title='Message Alert', button='OK')
             return render_template('register.html')
         # print(EmployeeId,Password)
     return render_template('login.html')
@@ -115,6 +120,13 @@ def logout():
 
 @app.route('/stationary')
 def stationary():
+    if request.method=='POST':
+        EmployeeId=request.form.get('empid')  
+        EmployeeName=request.form.get('empname')
+        Address=request.form.get('address')
+        Password=request.form.get('epass')
+        new_user=db.engine.execute(f"INSERT INTO `Regisform`(`E_id`, `Ename`, `Eaddress`, `Epass`) VALUES ('{EmployeeId}','{EmployeeName}','{Address}','')")
+
     return render_template('stationary.html')
 
 @app.route('/med')
