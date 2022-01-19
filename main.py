@@ -6,6 +6,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
+from pymsgbox import *
 
 
 # my db connection
@@ -27,7 +28,7 @@ def load_user(empid):
 
 #loading the db to main.py file
 #app.config['SQLALCHEMY_DATABASE_URL']='mysql://username:passwllord@localhost/databse_table_name'
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/cashandcarry'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/mallquest'
 db=SQLAlchemy(app)
 
 
@@ -45,6 +46,18 @@ class Regisform(UserMixin,db.Model):
     def get_id(self):
         return (self.E_id)
 
+class Customer(db.Model):
+     C_id=db.Column(db.Integer,primary_key=True)
+     Cname=db.Column(db.String(50))
+     Caddress=db.Column(db.String(100))
+     Cphone=db.Column(db.String(10))
+
+class Shop(db.Model):
+    Sh_id=db.Column(db.Integer,primary_key=True)
+    Shname=db.Column(db.String(50))
+    Shaddress=db.Column(db.String(100))
+    
+
 
 @app.route('/',methods=['POST','GET'])
 def login():
@@ -58,7 +71,8 @@ def login():
             return redirect(url_for('home'))
 
         else:
-            print('Invalid credentials')
+            #print('Invalid credentials')
+            alert(text='Invalid credentials', title='Message Alert', button='OK')
             return render_template('register.html')
         # print(EmployeeId,Password)
     return render_template('login.html')
@@ -93,7 +107,6 @@ def register():
 def home():
     return render_template('home.html')
 
-
 @app.route('/logout')
 @login_required
 def logout():
@@ -125,12 +138,3 @@ def grocery():
     return render_template('grocery.html') 
 
 app.run(debug=True)
-
-# @app.route('/test')
-# def test():
-#     return render_template('test.html')
-    # try:
-    #     test.query.all()
-    #     return 'db connected'
-    # except:
-    #     return 'not connected'
