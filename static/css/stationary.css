@@ -8,14 +8,30 @@ html {
 }
 body {
   margin: 4rem;
-  background-image: url(./images/back.png);
+  background-image: url(../images/back.png);
   background-position: cover;
   background-size: cover;
   padding-left: 5%;
   padding-right: 5%;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
+
 .tablecreate {
+  position: relative;
+  top: 6rem;
   max-width: 90rem;
   border: 0.1rem solid #83a8f7;
   background-color: #efefef33;
