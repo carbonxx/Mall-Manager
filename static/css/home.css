@@ -32,7 +32,7 @@ html {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-image: url(./images/homebg.png);
+  background-image: url(../images/homebg.png); 
   background-position: cover;
   background-size: cover;
   padding-left: 5%;
@@ -172,7 +172,7 @@ nav ul li a:hover {
 }
 
 .griditem {
-  background: url(./images/back.png);
+  background: url(../images/back.png);
   border-radius: 0.4rem;
   overflow: hidden;
   box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
@@ -267,7 +267,7 @@ nav ul li a:hover {
 /* footersection */
 
 footer {
-  background: url(./images/back.png);
+  background: url(../images/back.png);
   height: auto;
   width: 100vw;
   padding-top: 4rem;
