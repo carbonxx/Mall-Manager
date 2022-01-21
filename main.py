@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
 import pymsgbox
-from flask_cors import CORS
+#from flask_cors import CORS
 
 
 
@@ -17,8 +17,8 @@ local_server=True # setting localserver
 app = Flask(__name__)
 app.secret_key="swathi"
 
-CORS(app, supports_credentials=True, resources={r"/": {"origins": ""}})
-app.config['CORS_HEADERS'] = 'Content-Type'
+# CORS(app, supports_credentials=True, resources={r"/": {"origins": ""}})
+# app.config['CORS_HEADERS'] = 'Content-Type'
 
 #this is for getting unique employee access
 login_manager=LoginManager(app)
@@ -191,19 +191,22 @@ def grocery():
         new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
     return render_template('grocery.html') 
 
+@app.route('/stocks',methods=['POST','GET'])
+def stocks():
 
+    return render_template('/stocks.html')
 
 # edit
 # @app.route('/edit/<Integer:ST_id',methods=['POST','GET'])
 # def edit():
 #     return render_template(edit.html)
 
-#delete
-@app.route("/delete/<Integer:St_id>",methods=['POST','GET'])
-@login_required
-def delete(pid):
-    db.engine.execute(f"DELETE FROM `Stocks` WHERE `Stocks`.`St_id`={St_id}")
-    return redirect('/stationary')
+# #delete
+# @app.route("/delete/<Integer:St_id>",methods=['POST','GET'])
+# @login_required
+# def delete(pid):
+#     db.engine.execute(f"DELETE FROM `Stocks` WHERE `Stocks`.`St_id`={St_id}")
+#     return redirect('/stationary')
 
 
 
