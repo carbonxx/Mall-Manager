@@ -74,7 +74,47 @@
     </div>
 
     <div class="tablecreate" id="blur">
-        <table>
+        -->
+
+<table class="table create">
+  <thead>
+    <tr>
+      <th scope="col">ST_id</th>
+      <th scope="col">STname</th>
+      <th scope="col">Stamount</th>
+      <th scope="col">EDIT</th>
+      <th scope="col">DELETE</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{post.St_id}}</th>
+      <td>{{post.Stname}}</td>
+      <td>{{post.Stamount}}</td>
+    <td><a href="/Stock/{{post.St_id}}"><button class="action_btn ">Edit </button> </a> </td>
+    <td><a href="/delete/{{post.St_id}}"><button onclick="return confirm('Are you sure to Delete data');" class="action_btn">Delete </button> </a> </td>
+    </tr>
+  
+  </tbody>
+</table>
+
+
+         </div>
+       
+    
+        <script type="text/javascript">
+            function toggle(){
+                var blur=document.getElementById('blur');
+                blur.classList.toggle('active')
+                var btn=document.getElementById('btn');
+                btn.classList.toggle('active')
+            }
+        </script>
+      </body>
+      </html>
+      
+ <!-- <table>
             <thead>
                 <tr>
                     <th>St_ID</th>
@@ -140,18 +180,4 @@
                         </td>
                     </tr>
                 </tbody>
-            </table>
-        </div>
-       
-    
-        <script type="text/javascript">
-            function toggle(){
-                var blur=document.getElementById('blur');
-                blur.classList.toggle('active')
-                var btn=document.getElementById('btn');
-                btn.classList.toggle('active')
-            }
-        </script>
-      </body>
-      </html>
-      
+            </table>!-->

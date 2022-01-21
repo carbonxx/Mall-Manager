@@ -3,6 +3,7 @@ from flask import Flask,render_template,request,session,redirect,url_for
 from flask_login.utils import login_required, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
+from sqlalchemy import Column
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
@@ -62,6 +63,11 @@ class Shop(db.Model):
     Shname=db.Column(db.String(50))
     Shaddress=db.Column(db.String(100))
     
+class Orders(db.Model):
+    St_id=db.Column(db.Integer,primary_key=True)
+    C_id=db.Column(db.Integer,primary_key=True)
+    product=Column(db.String(100))
+    price=Column(db.Integer)
 
 
 @app.route('/',methods=['POST','GET'])
@@ -118,35 +124,87 @@ def logout():
     logout_user()
     return render_template('login.html')
 
-@app.route('/stationary')
+@app.route('/stationary',methods=['POST','GET'])
 def stationary():
     if request.method=='POST':
-        EmployeeId=request.form.get('empid')  
-        EmployeeName=request.form.get('empname')
-        Address=request.form.get('address')
-        Password=request.form.get('epass')
-        new_user=db.engine.execute(f"INSERT INTO `Regisform`(`E_id`, `Ename`, `Eaddress`, `Epass`) VALUES ('{EmployeeId}','{EmployeeName}','{Address}','')")
+        ShopId=request.form.get('Sh_id')  
+        CustomerId=request.form.get('C_id')
+        Product=request.form.get('Product')
+        Price=request.form.get('Price')
+        
+        new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
 
     return render_template('stationary.html')
 
-@app.route('/med')
+@app.route('/med',methods=['POST','GET'])
 def med():
+    if request.method=='POST':
+        ShopId=request.form.get('Sh_id')  
+        CustomerId=request.form.get('C_id')
+        Product=request.form.get('Product')
+        Price=request.form.get('Price')
+        
+        new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
     return render_template('med.html')
 
-@app.route('/toys')
+@app.route('/toys',methods=['POST','GET'])
 def toys():
+    if request.method=='POST':
+        ShopId=request.form.get('Sh_id')  
+        CustomerId=request.form.get('C_id')
+        Product=request.form.get('Product')
+        Price=request.form.get('Price')
+        
+        new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
     return render_template('toys.html')
 
-@app.route('/bakery')
+@app.route('/bakery',methods=['POST','GET'])
 def bakery():
+    if request.method=='POST':
+        ShopId=request.form.get('Sh_id')  
+        CustomerId=request.form.get('C_id')
+        Product=request.form.get('Product')
+        Price=request.form.get('Price')
+        
+        new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
     return render_template('bakery.html')
 
-@app.route('/clothing')
+@app.route('/clothing',methods=['POST','GET'])
 def clothing():
+    if request.method=='POST':
+        ShopId=request.form.get('Sh_id')  
+        CustomerId=request.form.get('C_id')
+        Product=request.form.get('Product')
+        Price=request.form.get('Price')
+        
+        new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
     return render_template('clothing.html')
 
-@app.route('/grocery')
+@app.route('/grocery',methods=['POST','GET'])
 def grocery():
+    if request.method=='POST':
+        ShopId=request.form.get('Sh_id')  
+        CustomerId=request.form.get('C_id')
+        Product=request.form.get('Product')
+        Price=request.form.get('Price')
+        
+        new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
     return render_template('grocery.html') 
+
+
+
+# edit
+# @app.route('/edit/<Integer:ST_id',methods=['POST','GET'])
+# def edit():
+#     return render_template(edit.html)
+
+#delete
+@app.route("/delete/<Integer:St_id>",methods=['POST','GET'])
+@login_required
+def delete(pid):
+    db.engine.execute(f"DELETE FROM `Stocks` WHERE `Stocks`.`St_id`={St_id}")
+    return redirect('/stationary')
+
+
 
 app.run(debug=True)
