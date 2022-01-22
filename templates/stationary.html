@@ -74,13 +74,13 @@
     </div>
 
     <div class="tablecreate" id="blur">
-        -->
+      
 
 <table class="table create">
   <thead>
     <tr>
-      <th scope="col">ST_id</th>
-      <th scope="col">STname</th>
+      <th scope="col">St_id</th>
+      <th scope="col">Stname</th>
       <th scope="col">Stamount</th>
       <th scope="col">EDIT</th>
       <th scope="col">DELETE</th>
@@ -88,6 +88,7 @@
     </tr>
   </thead>
   <tbody>
+    {% for post in query %}
     <tr>
       <th scope="row">{{post.St_id}}</th>
       <td>{{post.Stname}}</td>
@@ -95,7 +96,7 @@
     <td><a href="/stocks/{{post.St_id}}"><button class="action_btn ">Edit </button> </a> </td>
     <td><a href="/delete/{{post.St_id}}"><button onclick="return confirm('Are you sure to Delete data');" class="action_btn">Delete </button> </a> </td>
     </tr>
-  
+    {% endfor %}
   </tbody>
 </table>
 
