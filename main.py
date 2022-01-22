@@ -137,6 +137,7 @@ def stationary():
     return render_template('stationary.html')
 
 @app.route('/med',methods=['POST','GET'])
+
 def med():
     if request.method=='POST':
         ShopId=request.form.get('Sh_id')  
