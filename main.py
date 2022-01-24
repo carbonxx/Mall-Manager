@@ -69,6 +69,15 @@ class Orders(db.Model):
     product=Column(db.String(100))
     price=Column(db.Integer)
 
+class Stocks(db.Model):
+    St_id=db.Column(db.String(100),primary_key=True)
+    Stname=Column(db.String(50))
+    Stamount=Column(db.String(10000))
+
+class Trig(db.Model):
+    Tstid=db.Column(db.String(100),primary_key=True)
+    Tstname=db.Column(db.String(50))
+    Tstamount=db.Column(db.String(10000))
 
 @app.route('/',methods=['POST','GET'])
 def login():
@@ -198,17 +207,21 @@ def stocks():
     return render_template('/stocks.html')
 
 # edit
-# @app.route('/edit/<Integer:ST_id',methods=['POST','GET'])
-# def edit():
-#     return render_template(edit.html)
+@app.route('/stocks/<String:ST_id',methods=['POST','GET'])
+def edit():
+      return render_template(stocks.html)
 
-# #delete
-# @app.route("/delete/<Integer:St_id>",methods=['POST','GET'])
-# @login_required
-# def delete(pid):
-#     db.engine.execute(f"DELETE FROM `Stocks` WHERE `Stocks`.`St_id`={St_id}")
-#     return redirect('/stationary')
+ #delete
+@app.route("/delete/<Stringr:St_id>",methods=['POST','GET'])
 
+def delete(St_id):
+    db.engine.execute(f"DELETE FROM `Stocks` WHERE `Stocks`.`St_id`={St_id}")
+    return redirect('/stationary')
+
+@app.route('/triggers')
+def triggers():
+    query=db.engine.execute(f"SELECT * FROM `trig`") 
+    return render_template('triggers.html',query=query)
 
 
 app.run(debug=True)

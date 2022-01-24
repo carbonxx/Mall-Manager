@@ -1,12 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora&family=Source+Sans+Pro:wght@300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+</html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/stationary.css">
+    <title>Toy Store</title>
 </head>
 <body>
-    <h1>toys</h1>
-</body>
-</html>
+
+    <div class="center">
+        <input type="checkbox" id="show">
+        <div class="buttons">
+            <label for="show" class="show-btn" id="btn" onclick="toggle()"> PURCHASE</label>
+            <label for="" class="show-orders">ORDERS</label>
+        </div>
+       
+        <div class="container1">
+            <label for="show" class="close-btn fa fa-times" onclick="toggle()"></label>
+            <h2>SHOP ITEMS</h2>
+            <form id="register" action="/register" method="POST">
+                <div class="container">
+                    <label>Shop Id</label>
+                    <input
+                      type="text"
+                      name="shopid"
+                      id="name"
+                
+                      placeholder="Enter the shop ID" required
+                    />
+                  </div>
+                <div class="container">
+                  <label>Customer Id</label>
+                  <input
+                    type="text"
+                    name="custid"
+                    id="name"
+                    placeholder="Enter the customer ID" required
+                  />
+                </div>
+                <div class="container">
+                  <label>Product</label>
+                  <input
+                    type="text"
+                    name="product"
+                    id="name"
+                    placeholder="Enter the product name" required
+                  />
+                </div>
+                <div class="container">
+                  <label>Price</label>
+                  <input
+                    type="text"
+                    name="price"
+                    id="name"
+                    placeholder="Enter the price" required
+                  />
+                </div>
+                <div class="container">
+                  <input type="submit" name="submit" value="Submit" id="submit" />
+                </div>
+              </form>
+        </div>
+    </div>
+
+    <div class="tablecreate" id="blur">
+      
+
+<table class="table create">
+  <thead>
+    <tr>
+      <th scope="col">St_id</th>
+      <th scope="col">Stname</th>
+      <th scope="col">Stamount</th>
+      <th scope="col">EDIT</th>
+      <th scope="col">DELETE</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in query %}
+    <tr>
+      <th scope="row">{{post.St_id}}</th>
+      <td>{{post.Stname}}</td>
+      <td>{{post.Stamount}}</td>
+    <td><a href="/stocks/{{post.St_id}}"><button class="action_btn ">Edit </button> </a> </td>
+    <td><a href="/delete/{{post.St_id}}"><button onclick="return confirm('Are you sure to Delete data');" class="action_btn">Delete </button> </a> </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+         </div>
+       
+    
+        <script type="text/javascript">
+            function toggle(){
+                var blur=document.getElementById('blur');
+                blur.classList.toggle('active')
+                var btn=document.getElementById('btn');
+                btn.classList.toggle('active')
+            }
+        </script>
+      </body>
+      </html>
+      
