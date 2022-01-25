@@ -1,14 +1,26 @@
-from logging import debug
-from flask import Flask,render_template,request,session,redirect,url_for
-from flask_login.utils import login_required, logout_user
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
+# from logging import debug
+# from flask import Flask,render_template,request,session,redirect,url_for
+# from flask_login.utils import login_required, logout_user
+# from flask_sqlalchemy import SQLAlchemy
+# from flask_login import UserMixin
 from sqlalchemy import Column
-from werkzeug.security import generate_password_hash,check_password_hash
+# from werkzeug.security import generate_password_hash,check_password_hash
+# from flask_login import login_user,logout_user,login_manager,LoginManager
+# from flask_login import login_required,current_user
+import pymsgbox
+from flask import Flask, render_template, request ,session,redirect,url_for,flash
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from flask_login import UserMixin
 from flask_login import login_user,logout_user,login_manager,LoginManager
 from flask_login import login_required,current_user
-import pymsgbox
-#from flask_cors import CORS
+from flask_mail import Mail                             
+from pymsgbox import *
+from werkzeug.security import generate_password_hash,check_password_hash
+import json
+import pymysql,json
+pymysql.install_as_MySQLdb()
+from flask_cors import CORS
 
 
 
@@ -17,8 +29,8 @@ local_server=True # setting localserver
 app = Flask(__name__)
 app.secret_key="swathi"
 
-# CORS(app, supports_credentials=True, resources={r"/": {"origins": ""}})
-# app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app, supports_credentials=True, resources={r"/": {"origins": ""}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 #this is for getting unique employee access
 login_manager=LoginManager(app)
@@ -39,10 +51,10 @@ db=SQLAlchemy(app)
 
 
 #creating db models(tables)
-class test(db.Model):
-    id=db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String(100))
-    email=db.Column(db.String(100))
+# class test(db.Model):
+#     id=db.Column(db.Integer,primary_key=True)
+#     name=db.Column(db.String(100))
+#     email=db.Column(db.String(100))
 
 class Regisform(UserMixin,db.Model):
     E_id=db.Column(db.Integer,primary_key=True)
@@ -71,8 +83,9 @@ class Orders(db.Model):
 
 class Stocks(db.Model):
     St_id=db.Column(db.String(100),primary_key=True)
-    Stname=Column(db.String(50))
-    Stamount=Column(db.String(10000))
+    Stname=db.Column(db.String(50))
+    Stamount=db.Column(db.String(10000))
+    Stbarcode=db.Column(db.String(100))
 
 class Trig(db.Model):
     Tstid=db.Column(db.String(100),primary_key=True)
@@ -83,10 +96,10 @@ class Trig(db.Model):
 def login():
     if request.method=="POST":
         EmployeeId=request.form.get('empid')  
-        Password=request.form.get('epass')
+        epass=request.form.get('epass')
         user=Regisform.query.filter_by(E_id=EmployeeId).first()
 
-        if user and check_password_hash(user.Epass,Password):
+        if user and check_password_hash(user.Epass,epass):
             login_user(user)
             return redirect(url_for('home'))
 
@@ -106,13 +119,13 @@ def register():
         EmployeeId=request.form.get('empid')  
         EmployeeName=request.form.get('empname')
         Address=request.form.get('address')
-        Password=request.form.get('epass')
+        epass=request.form.get('epass')
   #     print(EmployeeId,EmployeeName, Address,Password)
         user=Regisform.query.filter_by(E_id=EmployeeId).first()
         if user:
             print("Employee already exists")
-            return render_template('/login.html')
-        encpassword=generate_password_hash(Password)
+            return redirect(url_for('login'))
+        encpassword=generate_password_hash(epass)   
         new_user=db.engine.execute(f"INSERT INTO `Regisform`(`E_id`, `Ename`, `Eaddress`, `Epass`) VALUES ('{EmployeeId}','{EmployeeName}','{Address}','{encpassword}')")
         # newuser=Regisform(E_id=EmployeeId,Ename=EmployeeName,Eaddress=Address,Epass=encpassword)
         # db.session.add(newuser)
@@ -201,21 +214,27 @@ def grocery():
         new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
     return render_template('grocery.html') 
 
-@app.route('/stocks',methods=['POST','GET'])
-def stocks():
+# @app.route('/stocks',methods=['POST','GET'])
+# def stocks():
 
-    return render_template('/stocks.html')
+#     return render_template('/stocks.html')
 
 # edit
-@app.route('/stocks/<String:ST_id',methods=['POST','GET'])
-def edit():
-      return render_template(stocks.html)
-
+@app.route("/stocks/<string:St_id>",methods=['POST','GET'])
+def stocks(St_id):
+    posts=Stocks.query.filter_by(St_id=St_id).first()
+    if request.method=="POST":
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        db.engine.execute(f"UPDATE `stock` SET `St_id` = '{St_id}', `Stname` = '{Stname}' WHERE `stock`.`St_id` = {St_id}")
+        # alert(text='You\'ve Success)
+        return redirect('/stocks')
+    return render_template('/stationary.html',posts=posts)
  #delete
-@app.route("/delete/<Stringr:St_id>",methods=['POST','GET'])
 
+@app.route("/delete/<string:St_id>",methods=['POST','GET'])
 def delete(St_id):
-    db.engine.execute(f"DELETE FROM `Stocks` WHERE `Stocks`.`St_id`={St_id}")
+    db.engine.execute(f"DELETE FROM `stock` WHERE `stock`.`St_id`={St_id}")
     return redirect('/stationary')
 
 @app.route('/triggers')
