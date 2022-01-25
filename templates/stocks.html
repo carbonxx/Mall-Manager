@@ -22,12 +22,12 @@
       <div class="contentbox">
         <div class="formbox">
           <h2>EDIT DETAILS</h2>
-          <form id="register" action="/stocks" method="POST">
+          <form id="register" action="/stocks/{{posts.St_id}}" method="POST">
             <div class="container">
               <label>Stock Id</label>
               <input
                 type="text"
-                name="stockid"
+                name="St_id"
                 id="name"
                 placeholder="Enter the stock ID"
                 required
@@ -37,7 +37,7 @@
               <label>Stock Name</label>
               <input
                 type="text"
-                name="stockname"
+                name="Stname"
                 id="name"
                 placeholder="Enter the stock name"
               />
@@ -46,7 +46,7 @@
               <label>Stock Price</label>
               <input
                 type="text"
-                name="stockamount"
+                name="Stamount"
                 id="name"
                 placeholder="Enter the stock price"
                 required
@@ -56,7 +56,7 @@
               <label>Stock Barcode</label>
               <input
                 type="text"
-                name="stbar"
+                name="Stbarcode"
                 id="name"
                 placeholder="Enter stock barcode"
                 required
