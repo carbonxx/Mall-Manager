@@ -21,13 +21,14 @@
       <div class="contentbox">
         <div class="formbox">
           <h2>Login</h2>
-          <form action="/" method="post">
+          <form id="login" action="\" method="POST" class="input-group" >
             <div class="container">
               <label>Employee Id</label>
               <input
                 type="text"
                 placeholder="Enter Username"
-                name="empid"
+                name="E_id"
+                id="E_id"
                 required
               />
             </div>
@@ -36,10 +37,11 @@
               <input
                 type="password"
                 placeholder="Enter Password"
-                name="epass"
-                required
-              />
+                name="Epass"
+                id="Epass"
+                />
             </div>
+            <br>
             <button type="submit">Login</button>
           </form>
         </div>
