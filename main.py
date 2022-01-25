@@ -236,11 +236,11 @@ def stocks(St_id):
 def delete(St_id):
     db.engine.execute(f"DELETE FROM `stock` WHERE `stock`.`St_id`={St_id}")
     return redirect('/stationary')
-
-@app.route('/triggers')
-def triggers():
-    query=db.engine.execute(f"SELECT * FROM `trig`") 
-    return render_template('triggers.html',query=query)
+# Trigger page required!!
+# @app.route('/triggers')
+# def triggers():
+#     query=db.engine.execute(f"SELECT * FROM `trig`") 
+#     return render_template('triggers.html',query=query)
 
 
 app.run(debug=True)
