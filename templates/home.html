@@ -18,16 +18,42 @@
 
     <section class="container" id="home">
       <div class="navbar">
-        <h4>MallQuest</h4>
-        <nav>
+        <!-- <h4>MallQuest</h4> -->
+        <!-- <nav>
           <ul>
             <li><a href="#home">HOME</a></li>
             <li><a href="#category">CATEGORY</a></li>
-            <li><a href="#orders">ORDERS</a></li>
+            <li><a href="/orders">ORDERS</a></li>
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Tables</button>
+                <div id="myDropdown" class="dropdown-content">
+                  <li class="dropdown"><a href="/employee">Employee</a></li>
+                  <li class="dropdown"><a href="/shop">Shops</a></li>
+                  <li class="dropdown"><a href="/stock">Stocks</a></li>
+                  <li class="dropdown"><a href="/manufacturer">Manufacturers</a></li>
+                  <li class="dropdown"><a href="/branch">Branches</a></li>
+              </div>
+            </div>
             <li><a href="#contact">CONTACT US</a></li>
           </ul>
-        </nav>
-        <!-- <button class="addcustomer">ADD CUSTOMERS</button> -->
+        </nav> -->
+        <div class="navbar">
+          <a href="#home">HOME</a>
+          <a href="#category">CATEGORY</a>
+          <div class="dropdown">
+            <button class="dropbtn">TABLES
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="/employee">Employee</a>
+              <a href="/shop">Shops</a>
+              <a href="/stock">Stocks</a>
+              <a href="/manufacturer">Manufacturers</a>
+              <a href="/branch">Branches</a>
+            </div>
+          </div>
+          <a href="/orders">ORDERS</a>
+        </div>
         <button class="logout"><a href="/logout">Logout</a></button>
       </div>
     </section>
@@ -155,6 +181,26 @@
         </div>
       </footer>
     </section>
+
+    <script type="text/javascript">
+      function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+// Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
+    </script>
   </body>
 </html>
 
