@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2022 at 09:19 AM
+-- Generation Time: Jan 26, 2022 at 09:43 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -121,14 +121,14 @@ CREATE TABLE `manufacturer` (
   `M_id` int(3) NOT NULL,
   `Mname` varchar(20) CHARACTER SET latin1 NOT NULL,
   `Maddress` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `Email` varchar(20) CHARACTER SET latin1 NOT NULL
+  `Memail` varchar(20) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `manufacturer`
 --
 
-INSERT INTO `manufacturer` (`M_id`, `Mname`, `Maddress`, `Email`) VALUES
+INSERT INTO `manufacturer` (`M_id`, `Mname`, `Maddress`, `Memail`) VALUES
 (1, 'Sathish', 'Bangalore', 'sathish@gmail.com'),
 (2, 'Esha', 'Tumkur', 'esha@gmail.com'),
 (3, 'Reshma', 'Mangalore', 'reshma@gmail.com'),
@@ -181,6 +181,17 @@ CREATE TABLE `producedby` (
   `M_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `producedby`
+--
+
+INSERT INTO `producedby` (`St_id`, `M_id`) VALUES
+(3, 10),
+(5, 6),
+(11, 4),
+(10, 3),
+(11, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -218,6 +229,18 @@ CREATE TABLE `shproducts` (
   `Sh_id` int(3) NOT NULL,
   `shproducts` varchar(20) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shproducts`
+--
+
+INSERT INTO `shproducts` (`Sh_id`, `shproducts`) VALUES
+(1, 'Pencils'),
+(2, 'Crocin'),
+(3, 'Teddy Bear'),
+(4, 'Muffins'),
+(5, 'Jacket'),
+(6, 'Tomatoes');
 
 -- --------------------------------------------------------
 
@@ -333,6 +356,17 @@ CREATE TABLE `visits` (
   `Sh_id` int(3) NOT NULL,
   `C_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `visits`
+--
+
+INSERT INTO `visits` (`Sh_id`, `C_id`) VALUES
+(1, 9),
+(2, 2),
+(3, 15),
+(5, 3),
+(6, 11);
 
 --
 -- Indexes for dumped tables
@@ -456,7 +490,7 @@ ALTER TABLE `shop`
 -- AUTO_INCREMENT for table `shproducts`
 --
 ALTER TABLE `shproducts`
-  MODIFY `Sh_id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `Sh_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `stock`
