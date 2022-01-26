@@ -391,7 +391,7 @@ def delete(St_id):
 
 @app.route('/triggers')
 def triggers():
-    query=db.engine.execute(f"SELECT * FROM `trig` ORDER BY `trig`.`Time` ASC") 
+    query=db.engine.execute(f"SELECT * FROM `trig` ORDER BY `trig`.`Time` DESC") 
     return render_template('triggers.html',query=query)
 
 
