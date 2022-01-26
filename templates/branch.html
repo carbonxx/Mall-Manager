@@ -13,23 +13,23 @@
   </head>
 </html>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="static/css/stationary.css">
-    <title>Orders</title>
+    <link rel="stylesheet" href="static/css/customer.css">
+    <title>Branches</title>
 </head>
 <body>
 
    
-  <h1 class="heading" style="color:#232d60;text-align: center;font-size: 4rem;">ORDERS</h1>
+  <h1 class="heading" style="color:#232d60;text-align: center;font-size: 4rem;">BRANCHES</h1>
     <div class="tablecreate" id="blur">
       
 
 <table class="table create">
   <thead>
     <tr>
-      <th scope="col">Customer ID</th>
-      <th scope="col">Sh_id</th>
-      <th scope="col">Stname</th>
-      <th scope="col">Stamount</th>
+      <th scope="col">Manufacturer ID</th>
+      <th scope="col">Bname</th>
+      <th scope="col">Baddress</th>
+      <th scope="col">Bphone</th>
       
 
     </tr>
@@ -37,10 +37,10 @@
   <tbody>
     {% for post in query %}
     <tr>
-      <th scope="row">{{post.C_id}}</th>
-      <td>{{post.Sh_id}}</td>
-      <td>{{post.Stname}}</td>
-      <td>{{post.Stamount}}</td>
+      <th scope="row">{{post.M_id}}</th>
+      <td>{{post.Bname}}</td>
+      <td>{{post.Baddress}}</td>
+      <td>{{post.Bphone}}</td>
     </tr>
     {% endfor %}
   </tbody>

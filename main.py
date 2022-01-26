@@ -214,7 +214,7 @@ def stationary():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
-    query=db.engine.execute("SELECT * FROM `stock`")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=1")
     return render_template('stationary.html', query=query)
 
 @app.route('/med',methods=['POST','GET'])
@@ -229,7 +229,7 @@ def med():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
-    query=db.engine.execute("SELECT * FROM `stock`")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=2")
     return render_template('med.html', query=query)
 
 @app.route('/toys',methods=['POST','GET'])
@@ -244,91 +244,131 @@ def toys():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
-    query=db.engine.execute("SELECT * FROM `stock`")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=3")
     return render_template('toys.html', query=query)
 
-# @app.route('/stationary',methods=['POST','GET'])
-# def stationary():
-#     if request.method=='POST':
-#         ShopId=request.form.get('Sh_id')
-#         CustomerId=request.form.get('C_id')
-#         Product=request.form.get('Product')
-#         Price=request.form.get('Price')
-        
-#         new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
+@app.route('/bakery',methods=['POST','GET'])
+def bakery():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=4")
+    return render_template('bakery.html', query=query)
 
-#     return render_template('stationary.html')
 
-# @app.route('/med',methods=['POST','GET'])
+@app.route('/clothing',methods=['POST','GET'])
+def clothing():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=5")
+    return render_template('clothing.html', query=query)
 
-# @app.route('/med',methods=['POST','GET'])
-# def med():
-#     if request.method=='POST':
-#         # Stocks
-#         St_id=request.form.get('St_id')
-#         Stname=request.form.get('Stname')
-#         Stamount=request.form.get('Stamount')
-#         Stbarcode=request.form.get('Stbarcode')
-#         Sh_id=request.form.get('Sh_id')
-#         # CustomerId=request.form.get('C_id')
-#         M_id=request.form.get('M_id')
-#         new_order=db.engine.execute(f"INSERT INTO `stock` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `M_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}','{Sh_id}','{M_id}')")
-#     query=db.engine.execute("SELECT * FROM `stock`")
-#     return render_template('med.html', query=query)
+@app.route('/grocery',methods=['POST','GET'])
+def grocery():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=6")
+    return render_template('grocery.html', query=query)
 
-# @app.route('/toys',methods=['POST','GET'])
-# def toys():
-#     if request.method=='POST':
-#         ShopId=request.form.get('Sh_id')  
-#         CustomerId=request.form.get('C_id')
-#         Product=request.form.get('Product')
-#         Price=request.form.get('Price')
-        
-#         new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
-#     return render_template('toys.html')
+@app.route('/employee',methods=['POST','GET'])
+def employee():
+    if request.method=='POST':
+        E_id=request.form.get('E_id')
+        Ename=request.form.get('Ename')
+        Eaddress=request.form.get('Eaddress')
+        Ephone=request.form.get('Ephone')
+        Esalary=request.form.get('Esalary')
+        Epass=request.form.get('Epass')
+        new_add=db.engine.execute(f"INSERT INTO employee` (`E_id, `Ename`, `Eaddress`,  `Ephone`,`Esalary`,`Epass`) VALUES ('{E_id}','{Ename}','{Eaddress}','{Ephone}','{Esalary}','{Epass}')")
+    query=db.engine.execute("SELECT * FROM `employee`")
+    return render_template('employee.html', query=query)
 
-# @app.route('/bakery',methods=['POST','GET'])
-# def bakery():
-#     if request.method=='POST':
-#         ShopId=request.form.get('Sh_id')  
-#         CustomerId=request.form.get('C_id')
-#         Product=request.form.get('Product')
-#         Price=request.form.get('Price')
-        
-#         new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
-#     return render_template('bakery.html')
+@app.route('/customer',methods=['POST','GET'])
+def customer():
+    if request.method=='POST':
+        C_id=request.form.get('C_id')
+        Cname=request.form.get('Cname')
+        Caddress=request.form.get('Caddress')
+        Cphone=request.form.get('Cphone')
+        new_add=db.engine.execute(f"INSERT INTO `customer` (`C_id, `Cname`, `Caddress`,  `Cphone`) VALUES ('{C_id}','{Cname}','{Caddress}','{Cphone}')")
+    query=db.engine.execute("SELECT * FROM `customer`")
+    return render_template('customer.html', query=query)
 
-# @app.route('/clothing',methods=['POST','GET'])
-# def clothing():
-#     if request.method=='POST':
-#         ShopId=request.form.get('Sh_id')  
-#         CustomerId=request.form.get('C_id')
-#         Product=request.form.get('Product')
-#         Price=request.form.get('Price')
-        
-#         new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
-#     return render_template('clothing.html')
+@app.route('/manufacturer',methods=['POST','GET'])
+def manufacturer():
+    if request.method=='POST':
+        M_id=request.form.get('M_id')
+        Mname=request.form.get('Mname')
+        Maddress=request.form.get('Maddress')
+        Memail=request.form.get('Memail')
+        new_add=db.engine.execute(f"INSERT INTO `manufacturer` (`M_id, `Mname`, `Maddress`,  `Memail`) VALUES ('{M_id}','{Mname}','{Maddress}','{Memail}')")
+    query=db.engine.execute("SELECT * FROM `manufacturer`")
+    return render_template('manufacturer.html', query=query)
 
-# @app.route('/grocery',methods=['POST','GET'])
-# def grocery():
-#     if request.method=='POST':
-#         ShopId=request.form.get('Sh_id')  
-#         CustomerId=request.form.get('C_id')
-#         Product=request.form.get('Product')
-#         Price=request.form.get('Price')
-        
-#         new_order=db.engine.execute(f"INSERT INTO `Orders`(`Sh_id`, `C_id`, `Product`, `Price`) VALUES ('{ShopId}','{CustomerId}','{Product}','{Price}')")
-#     return render_template('grocery.html') 
+@app.route('/shop',methods=['POST','GET'])
+def shop():
+    if request.method=='POST':
+        Sh_id=request.form.get('Sh_id')
+        Shname=request.form.get('Shname')
+        Shphone=request.form.get('Shphone')
+        Shaddress=request.form.get('Shaddress')
+        E_id=request.form.get('E_id')
+        C_id=request.form.get('C_id')
+        new_add=db.engine.execute(f"INSERT INTO `shop` (`Sh_id, `Shname`, `Shphone`,  `Cphone`, `E_id`, `C_id`) VALUES ('{Sh_id}','{Shname}','{Shphone}','{Shaddress}','{E_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `shop`")
+    return render_template('shop.html', query=query)
 
-# @app.route('/stocks',methods=['POST','GET'])
-# def stocks():
+@app.route('/stock',methods=['POST','GET'])
+def stock():
+    if request.method=='POST':
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        M_id=request.form.get('M_id')
+        new_add=db.engine.execute(f"INSERT INTO `stock` (`St_id, `Stname`, `Stamount`, `Stbarcode` `Cphone`,`Sh_id`, `M_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}','{Sh_id}','{M_id}')")
+    query=db.engine.execute("SELECT * FROM `stock`")
+    return render_template('stock.html', query=query)
 
-#     return render_template('/stocks.html')
+@app.route('/branch',methods=['POST','GET'])
+def branch():
+    if request.method=='POST':
+        M_id=request.form.get('M_id')
+        Bname=request.form.get('Bname')
+        Baddress=request.form.get('Baddress')
+        Bphone=request.form.get('Bphone')
+        new_add=db.engine.execute(f"INSERT INTO `branch` (`M_id, `Bname`, `Baddress`, `Bphone` `Cphone`) VALUES ('{M_id}','{Bname}','{Baddress}','{Bphone})")
+    query=db.engine.execute("SELECT * FROM `branch`")
+    return render_template('branch.html', query=query)
 
 # edit
-@app.route("/edit/<string:Sh_id>",methods=['POST','GET'])
-def edit(Sh_id):
-    posts=Stock.query.filter_by(Sh_id=Sh_id).first()
+@app.route("/edit/<string:St_id>",methods=['POST','GET'])
+def edit(St_id):
+    posts=Stock.query.filter_by(St_id=St_id).first()
     if request.method=="POST":
         St_id=request.form.get('St_id')
         Stname=request.form.get('Stname')

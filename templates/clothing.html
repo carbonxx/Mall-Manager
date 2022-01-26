@@ -22,50 +22,69 @@
         <input type="checkbox" id="show">
         <div class="buttons">
             <label for="show" class="show-btn" id="btn" onclick="toggle()"> PURCHASE</label>
-            <label for="" class="show-orders">ORDERS</label>
+            <a href="/triggers"><label for="" class="show-triggers">Triggers</label></a>
+            <a href="/orders"><label for="" class="show-orders">ORDERS</label></a>
         </div>
        
         <div class="container1">
             <label for="show" class="close-btn fa fa-times" onclick="toggle()"></label>
             <h2>SHOP ITEMS</h2>
-            <form id="register" action="/register" method="POST">
+            <form id="register" action="/clothing" method="POST">
                 <div class="container">
-                    <label>Shop Id</label>
+                    <label>Stock ID</label>
                     <input
                       type="text"
-                      name="shopid"
-                      id="name"
-                
+                      name="St_id"
+                      id="St_id"
                       placeholder="Enter the shop ID" required
                     />
                   </div>
                 <div class="container">
-                  <label>Customer Id</label>
+                  <label>Stock Name</label>
                   <input
                     type="text"
-                    name="custid"
-                    id="name"
+                    name="Stname"
+                    id="Stname"
+                    placeholder="Enter the stock name" required
+                  />
+                </div>
+                <div class="container">
+                  <label>Stock Amount</label>
+                  <input
+                    type="text"
+                    name="Stamount"
+                    id="Stamount"
+                    placeholder="Enter the stock amount" required
+                  />
+                </div>
+                <div class="container">
+                  <label>Stock Barcode</label>
+                  <input
+                    type="text"
+                    name="Stbarcode"
+                    id="Stbarcode"
+                    placeholder="Enter the stock barcode" required
+                  />
+                </div>
+                <div class="container">
+                  <label>Shop ID</label>
+                  <input
+                    type="text"
+                    name="Sh_id"
+                    id="Sh_id"
+                    placeholder="Enter the shop ID" required
+                  />
+                </div>
+                <div class="container">
+                  <label>Customer ID</label>
+                  <input
+                    type="text"
+                    name="C_id"
+                    id="C_id"
                     placeholder="Enter the customer ID" required
                   />
                 </div>
-                <div class="container">
-                  <label>Product</label>
-                  <input
-                    type="text"
-                    name="product"
-                    id="name"
-                    placeholder="Enter the product name" required
-                  />
-                </div>
-                <div class="container">
-                  <label>Price</label>
-                  <input
-                    type="text"
-                    name="price"
-                    id="name"
-                    placeholder="Enter the price" required
-                  />
-                </div>
+                
                 <div class="container">
                   <input type="submit" name="submit" value="Submit" id="submit" />
                 </div>
@@ -82,6 +101,9 @@
       <th scope="col">St_id</th>
       <th scope="col">Stname</th>
       <th scope="col">Stamount</th>
+      <th scope="col">Stbarcode</th>
+      <th scope="col">Sh_id</th>
+      <!-- <th scope="col">M_id</th> -->
       <th scope="col">EDIT</th>
       <th scope="col">DELETE</th>
 
@@ -94,8 +116,9 @@
       <td>{{post.Stname}}</td>
       <td>{{post.Stamount}}</td>
       <td>{{post.Stbarcode}}</td>
-    <td><a href="/stocks/{{post.St_id}}"><button class="action_btn ">Edit </button> </a> </td>
-    <td><a href="/delete/{{post.St_id}}"><button onclick="return confirm('Are you sure to Delete data');" class="action_btn">Delete </button> </a> </td>
+      <td>{{post.Sh_id}}</td>
+    <td><div class="edit_btn"><a href="/edit/{{post.St_id}}">Edit </a></div></td>
+    <td><div class="delete_btn" onclick="return confirm('Are you sure to Delete data');"><a href="/delete/{{post.St_id}}">Delete</a></div> </td>
     </tr>
     {% endfor %}
   </tbody>

@@ -22,7 +22,7 @@
         <input type="checkbox" id="show">
         <div class="buttons">
             <label for="show" class="show-btn" id="btn" onclick="toggle()"> PURCHASE</label>
-            <a href="/triggers"><label for="" class="show-orders">Triggers</label></a>
+            <a href="/triggers"><label for="" class="show-triggers">Triggers</label></a>
             <a href="/orders"><label for="" class="show-orders">ORDERS</label></a>
         </div>
        
@@ -45,7 +45,7 @@
                     type="text"
                     name="Stname"
                     id="Stname"
-                    placeholder="Enter the customer ID" required
+                    placeholder="Enter the stock name" required
                   />
                 </div>
                 <div class="container">
@@ -54,7 +54,7 @@
                     type="text"
                     name="Stamount"
                     id="Stamount"
-                    placeholder="Enter the product name" required
+                    placeholder="Enter the stock amount" required
                   />
                 </div>
                 <div class="container">
@@ -63,7 +63,7 @@
                     type="text"
                     name="Stbarcode"
                     id="Stbarcode"
-                    placeholder="Enter the price" required
+                    placeholder="Enter the stock barcode" required
                   />
                 </div>
                 <div class="container">
@@ -72,7 +72,7 @@
                     type="text"
                     name="Sh_id"
                     id="Sh_id"
-                    placeholder="Enter the price" required
+                    placeholder="Enter the shop ID" required
                   />
                 </div>
                 <div class="container">
@@ -81,7 +81,7 @@
                     type="text"
                     name="C_id"
                     id="C_id"
-                    placeholder="Enter the shop ID" required
+                    placeholder="Enter the customer ID" required
                   />
                 </div>
                 
@@ -117,8 +117,8 @@
       <td>{{post.Stamount}}</td>
       <td>{{post.Stbarcode}}</td>
       <td>{{post.Sh_id}}</td>
-    <td><a href="/edit/{{post.St_id}}"><button class="action_btn ">Edit </button> </a> </td>
-    <td><a href="/delete/{{post.St_id}}"><button onclick="return confirm('Are you sure to Delete data');" class="action_btn">Delete </button> </a> </td>
+    <td><div class="edit_btn"><a href="/edit/{{post.St_id}}">Edit </a></div></td>
+    <td><div class="delete_btn" onclick="return confirm('Are you sure to Delete data');"><a href="/delete/{{post.St_id}}">Delete</a></div> </td>
     </tr>
     {% endfor %}
   </tbody>
