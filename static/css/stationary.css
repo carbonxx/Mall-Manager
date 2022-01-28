@@ -175,13 +175,12 @@ table > tbody > tr:hover {
 
 .show-orders {
   position: absolute;
-  right: 0;
   top: 3rem;
-  margin-right: 18rem;
+  right: 0;
+  margin-right: 10rem;
   padding: 1.5rem;
   display: inline-block;
   border-radius: 1.5rem;
-  color: black;
   font-size: 1.5rem;
   font-weight: 700;
   text-decoration: none;
@@ -193,33 +192,17 @@ table > tbody > tr:hover {
   cursor: pointer;
 }
 
-.show-orders:hover {
+.show-orders a{
+  text-decoration: none;
+  color: black;
+}
+
+.show-orders :hover {
   border: none;
   color: rgb(255, 255, 255);
-  background: linear-gradient(45deg, #e41a9a, #83a8f7);
 }
 
-.show-triggers{
-  position: absolute;
-  right: 0;
-  top: 3rem;
-  margin-right: 3rem;
-  color: black;
-  padding: 1.5rem;
-  display: inline-block;
-  border-radius: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-decoration: none;
-  background: linear-gradient(45deg, #83a8f7, #e41a9a);
-  box-shadow: 0.3rem 0.8rem 2.2rem rgba(105, 30, 75, 0.15);
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  border: none;
-  cursor: pointer;
-}
-
-.show-triggers:hover {
+.show-orders a :hover {
   border: none;
   color: rgb(255, 255, 255);
   background: linear-gradient(45deg, #e41a9a, #83a8f7);
@@ -229,6 +212,7 @@ table > tbody > tr:hover {
 #show:checked ~ .container1 {
   display: block;
 }
+
 
 input[type="checkbox"] {
   display: none;

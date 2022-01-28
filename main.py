@@ -1,12 +1,6 @@
-# from logging import debug
-# from flask import Flask,render_template,request,session,redirect,url_for
-# from flask_login.utils import login_required, logout_user
-# from flask_sqlalchemy import SQLAlchemy
-# from flask_login import UserMixin
 from sqlalchemy import Column
-# from werkzeug.security import generate_password_hash,check_password_hash
-# from flask_login import login_user,logout_user,login_manager,LoginManager
-# from flask_login import login_required,currentC:\Users\Admin\ArmsAndAmmunition\main.py_user
+from flask import request, g
+from werkzeug.urls import url_parse
 import pymsgbox
 from flask import Flask, render_template, request ,session,redirect,url_for,flash
 from flask_sqlalchemy import SQLAlchemy
@@ -50,12 +44,6 @@ def load_user(user_id):
 #app.config['SQLALCHEMY_DATABASE_URL']='mysql://username:passwllord@localhost/databse_table_name'
 
 
-#creating db models(tables)
-# class test(db.Model):
-#     id=db.Column(db.Integer,primary_key=True)
-#     name=db.Column(db.String(100))
-#     email=db.Column(db.String(100))
-
 class Employee(UserMixin, db.Model):
     __tablename__ = 'employee'
     E_id=db.Column(db.Integer, primary_key=True)
@@ -76,7 +64,8 @@ class Customer(db.Model):
 
 class Orders(db.Model):
     __tablename__ = 'orders'
-    C_id=db.Column(db.Integer,primary_key=True)
+    Ord_no=db.Column(db.Integer,primary_key=True)
+    C_id=db.Column(db.Integer, nullable=False)
     Stname=db.Column(db.String(20), nullable=False)
     Stamount=db.Column(db.Integer, nullable=False)
     Sh_id=db.Column(db.Integer, nullable=False)
@@ -154,14 +143,14 @@ def login():
         user=Employee.query.filter_by(E_id=E_id).first()
 
         # if user and Epass:
-        if user and check_password_hash(user.Epass,Epass):
+        if user and check_password_hash(user.Epass,Epass) and E_id=='1': #here E_id ==1 is just hardcoded to see whether the admin functionality working
             login_user(user)
             return redirect(url_for('home'))
 
         else:
             #print('Invalid credentials')
             alert(text='You Are Not Authorized To Access This System/Re-Enter Your Credentials', title='Access Denied', button='OK')
-            return render_template('register.html')
+            return render_template('login.html')
         # print(EmployeeId,Password)
     return render_template('login.html')
 
@@ -183,10 +172,6 @@ def register():
             return redirect(url_for('login'))
         encpassword=generate_password_hash(Epass)   
         new_user=db.engine.execute(f"INSERT INTO `employee`(`E_id`, `Ename`, `Eaddress`, `Epass`) VALUES ('{E_id}','{Ename}','{Eaddress}','{encpassword}')")
-        # newuser=Regisform(E_id=EmployeeId,Ename=EmployeeName,Eaddress=Address,Epass=encpassword)
-        # db.session.add(newuser)
-        # db.session.commit()
-
         return redirect(url_for('login')) # return redirect(url_for('login'))
         
     return render_template('register.html')
@@ -215,6 +200,7 @@ def stationary():
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
     query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=1")
+
     return render_template('stationary.html', query=query)
 
 @app.route('/med',methods=['POST','GET'])
@@ -386,7 +372,7 @@ def edit(St_id):
 @app.route("/delete/<string:St_id>",methods=['POST','GET'])
 def delete(St_id):
     db.engine.execute(f"DELETE FROM `stock` WHERE `stock`.`St_id`={St_id}")
-    return redirect('/stationary')
+    return redirect('/triggers')
 # Trigger page required!!
 
 @app.route('/triggers')
@@ -395,5 +381,117 @@ def triggers():
     return render_template('triggers.html',query=query)
 
 
+@app.route('/addcustomer',methods=['POST','GET'])
+def addcustomer():
+    if request.method=='POST':
+        # C_id=request.form.get('C_id')
+        Cname=request.form.get('Cname')
+        Caddress=request.form.get('Caddress')
+        Cphone=request.form.get('Cphone')
+        new_add=db.engine.execute(f"INSERT INTO `customer` (`Cname`, `Caddress`,  `Cphone`) VALUES ('{Cname}','{Caddress}','{Cphone}')")
+        # url = request.referrer
+        # if url:
+        #     session["url"] = url
+        # return redirect(session.get("url"))
+        # return redirect(request.referrer)
+    return render_template('/addcustomer.html')
 
+    
+   
+
+
+# this is for the employee, so when you apply regex it should redirevt them to the following pages. for eg: if the employee has id as GS001 then,
+#it should take him to the grocery1.html
+
+@app.route('/stationary1',methods=['POST','GET'])
+def stationary1():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=1")
+
+    return render_template('stationary1.html', query=query)
+
+@app.route('/med1',methods=['POST','GET'])
+def med1():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=2")
+    return render_template('med1.html', query=query)
+
+@app.route('/toys1',methods=['POST','GET'])
+def toys1():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=3")
+    return render_template('toys1.html', query=query)
+
+@app.route('/bakery1',methods=['POST','GET'])
+def bakery1():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=4")
+    return render_template('bakery.html', query=query)
+
+
+@app.route('/clothing1',methods=['POST','GET'])
+def clothing1():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=5")
+    return render_template('clothing1.html', query=query)
+
+@app.route('/grocery1',methods=['POST','GET'])
+def grocery1():
+    if request.method=='POST':
+        # Stocks
+        St_id=request.form.get('St_id')
+        Stname=request.form.get('Stname')
+        Stamount=request.form.get('Stamount')
+        Stbarcode=request.form.get('Stbarcode')
+        Sh_id=request.form.get('Sh_id')
+        C_id=request.form.get('C_id')
+        # M_id=request.form.get('M_id')
+        new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+    query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=6")
+    return render_template('grocery1.html', query=query)
 app.run(debug=True)
