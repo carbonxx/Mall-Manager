@@ -120,3 +120,20 @@ section .contentbox .formbox button[type="submit"]:hover{
     background:linear-gradient(45deg,#e41a9a,#83a8f7);
     border: none;
 }
+
+.signup{
+    margin-top:1rem ;
+    color: #607d8b;
+    text-align: center;
+    letter-spacing: .05rem;
+    font-size: 1rem;
+}
+
+.reg{
+    color:#e41a9a;
+    letter-spacing: .05rem;
+}
+
+.reg:hover{
+    color: #232d60;
+}
