@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2022 at 04:48 PM
+-- Generation Time: Jan 28, 2022 at 07:02 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -60,7 +60,7 @@ CREATE TABLE `customer` (
   `C_id` int(3) NOT NULL,
   `Cname` varchar(20) CHARACTER SET latin1 NOT NULL,
   `Caddress` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `Cphone` int(15) NOT NULL
+  `Cphone` bigint(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -68,21 +68,48 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`C_id`, `Cname`, `Caddress`, `Cphone`) VALUES
-(1, 'Vishnu', 'bangalore', 876545563),
-(2, 'Anitha', 'Bangalore', 678887888),
-(3, 'Priya', 'Jaipur', 899756007),
-(4, 'Kavya', 'Hosur', 776530900),
-(5, 'Samaira', 'Jaipur', 988877454),
-(6, 'Rashi', 'Mangalore', 770198342),
-(7, 'James', 'Surat', 876754665),
-(8, 'Robert', 'Coorg', 752431998),
-(9, 'John', 'Manali', 998453122),
-(10, 'Charles', 'Udaipur', 877665098),
-(11, 'Daniel', 'Rishikesh', 900067876),
-(12, 'Anthony', 'Nainital', 888067565),
-(13, 'William', 'Darjelling', 678890541),
-(14, 'Steven', 'Mangalore', 700894332),
-(15, 'Wiston', 'Jaipur', 898876123);
+(1, 'Vishnu', 'bangalore', 8765455631),
+(2, 'Anitha', 'Bangalore', 6788878883),
+(3, 'Priya', 'Jaipur', 8997560074),
+(4, 'Kavya', 'Hosur', 7765309005),
+(5, 'Samaira', 'Jaipur', 9888774547),
+(6, 'Rashi', 'Mangalore', 7701983420),
+(7, 'James', 'Surat', 8767546654),
+(8, 'Robert', 'Coorg', 7524319981),
+(9, 'John', 'Manali', 9984531221),
+(10, 'Charles', 'Udaipur', 8776650984),
+(11, 'Daniel', 'Rishikesh', 9000678760),
+(12, 'Anthony', 'Nainital', 8880675652),
+(13, 'William', 'Darjelling', 6788905411),
+(14, 'Steven', 'Mangalore', 7008943323),
+(15, 'Wiston', 'Jaipur', 8988761235),
+(16, 'Mayur', 'Mangalore', 9611609185),
+(17, 'Sayuri', 'Mangalore', 9678564409),
+(18, 'Riya', 'tumkur', 9887654345),
+(19, 'Reema', 'Tumkur', 9885543120),
+(20, 'Mayur', 'Mangalore', 9611609185),
+(21, 'Gaana', 'pune', 6776567890),
+(22, 'Tarun', 'Ooty', 9013456789),
+(23, 'Hina', 'Pune', 6554590089),
+(24, 'Hitha', 'Pune', 8978890089),
+(25, 'Tia', 'Mumbai', 9900886754),
+(26, 'Kavana', 'Mumbai', 8645678677),
+(27, 'Soumya', 'Bangalore', 9087866453),
+(28, 'Suraj', 'Bangalore', 9087866453),
+(29, 'Jia', 'Mumbai', 8765345678),
+(30, 'Rakesh', 'Lucknow', 7889098456),
+(31, 'Moon', 'Lucknow', 8890045567),
+(32, 'Tina', 'Udaipur', 8767890567),
+(33, 'Tina', 'Udaipur', 8767890567),
+(34, 'Rajeshwari', 'Bangalore', 9123432567),
+(35, 'Karan', 'Mumbai', 7667890564),
+(36, 'Anisha', 'Mumbai', 7845332100),
+(37, 'Anish', 'Pune', 9087156421),
+(38, 'Sara', 'Bangalore', 9123412367),
+(39, 'Sara', 'Bangalore', 9123412367),
+(40, 'Sana', 'Shimla', 9657890400),
+(41, 'Venus', 'Surat', 7467890012),
+(42, 'Leena', 'Hubli', 8957463526);
 
 -- --------------------------------------------------------
 
@@ -152,11 +179,12 @@ INSERT INTO `manufacturer` (`M_id`, `Mname`, `Maddress`, `Memail`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `St_id` int(3) NOT NULL,
+  `Ord_no` int(3) NOT NULL,
   `Sh_id` int(3) NOT NULL,
+  `St_id` int(3) NOT NULL,
   `Stbarcode` bigint(12) NOT NULL,
   `Stname` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `Stamount` double NOT NULL,
+  `Stamount` varchar(20) CHARACTER SET latin1 NOT NULL,
   `C_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -164,11 +192,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`St_id`, `Sh_id`, `Stbarcode`, `Stname`, `Stamount`, `C_id`) VALUES
-(1, 1, 567895432345, 'Pencils', 20, 1),
-(2, 1, 456789876543, 'eraser', 5, 2),
-(4, 2, 345654567890, 'Cotton', 50, 3),
-(15, 4, 987656543122, 'Cups', 60, 5);
+INSERT INTO `orders` (`Ord_no`, `Sh_id`, `St_id`, `Stbarcode`, `Stname`, `Stamount`, `C_id`) VALUES
+(1, 1, 1, 512345000107, 'Pencils', '20', 1),
+(2, 1, 2, 7845123652, 'Eraser', '10', 3),
+(3, 1, 2, 7845123652, 'Eraser', '10', 3),
+(4, 1, 2, 7845123652, 'Eraser', '10', 3),
+(5, 1, 0, 0, 'Scale', '10', 3),
+(6, 1, 1, 512345000107, 'Pencils', '20', 1);
 
 -- --------------------------------------------------------
 
@@ -264,23 +294,22 @@ CREATE TABLE `stock` (
 INSERT INTO `stock` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `M_id`) VALUES
 (1, 'Pencils', 20, 512345000107, 1, 2),
 (2, 'Eraser', 10, 7845123652, 1, 13),
-(3, 'Scale', 5, 233445567889, 1, 10),
 (4, 'Teddy Bear', 200, 512345000107, 3, 3),
 (5, 'Crocin', 40, 233445567889, 2, 6),
 (7, 'Chips', 50, 345654567890, 4, 11),
-(8, 'Carrots', 80, 887453110919, 6, 4),
 (9, 'Tshirt', 350, 856154234567, 5, 8),
 (10, 'Doll', 400, 781234156711, 3, 3),
 (11, 'Cucumber', 35, 990081445167, 6, 4),
 (12, 'Cotton', 45, 876543456780, 2, 6),
 (13, 'Dolo650', 20, 234576890187, 2, 6),
 (14, 'Blocks', 100, 567789013425, 3, 9),
-(15, 'Cups', 60, 987656543122, 4, 11),
 (16, 'Muffins', 30, 890653344567, 4, 11),
 (17, 'Jacket', 600, 667789056434, 5, 1),
 (18, 'Socks', 30, 454456778901, 5, 1),
 (19, 'Raddish', 45, 345678987656, 6, 4),
-(20, 'Tomatoes', 80, 567890987615, 6, 4);
+(20, 'Tomatoes', 80, 567890987615, 6, 4),
+(21, 'Scale', 10, 233445567889, 1, 10),
+(22, 'Paracetomol', 20, 345678767890, 2, 15);
 
 --
 -- Triggers `stock`
@@ -344,7 +373,17 @@ INSERT INTO `trig` (`Triggerid`, `St_id`, `Stname`, `Stamount`, `Stbarcode`, `Ac
 (30, 17, 'Jacket', 600, 667789056434, 'Stock Inserted!', '2022-01-26 11:03:04'),
 (32, 18, 'Socks', 30, 454456778901, 'Stock Inserted!', '2022-01-26 11:04:41'),
 (33, 19, 'Raddish', 45, 345678987656, 'Stock Inserted!', '2022-01-26 11:04:41'),
-(34, 20, 'Tomatoes', 80, 567890987615, 'Stock Inserted!', '2022-01-26 11:05:07');
+(34, 20, 'Tomatoes', 80, 567890987615, 'Stock Inserted!', '2022-01-26 11:05:07'),
+(35, 3, 'Scale', 10, 233445567889, 'Stock Info Updated!', '2022-01-27 13:41:20'),
+(36, 2, 'Eraser', 5, 7845123652, 'Stock Info Updated!', '2022-01-27 14:19:26'),
+(37, 2, 'Eraser', 10, 7845123652, 'Stock Info Updated!', '2022-01-27 14:20:04'),
+(38, 21, 'Shorts', 250, 788905645451, 'Stock Inserted!', '2022-01-27 14:25:45'),
+(39, 8, 'Carrots', 80, 887453110919, 'Stock Deleted!', '2022-01-27 14:28:00'),
+(40, 21, 'Shorts', 250, 788905645451, 'Stock Deleted!', '2022-01-27 14:29:53'),
+(41, 3, 'Scale', 10, 233445567889, 'Stock Deleted!', '2022-01-27 14:31:11'),
+(42, 15, 'Cups', 60, 987656543122, 'Stock Deleted!', '2022-01-27 14:35:30'),
+(43, 21, 'Scale', 10, 233445567889, 'Stock Inserted!', '2022-01-27 14:37:20'),
+(44, 22, 'Paracetomol', 20, 345678767890, 'Stock Inserted!', '2022-01-28 15:34:57');
 
 -- --------------------------------------------------------
 
@@ -401,7 +440,7 @@ ALTER TABLE `manufacturer`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`C_id`);
+  ADD PRIMARY KEY (`Ord_no`);
 
 --
 -- Indexes for table `producedby`
@@ -460,7 +499,7 @@ ALTER TABLE `branch`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `C_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `C_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -478,7 +517,7 @@ ALTER TABLE `manufacturer`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `C_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Ord_no` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `shop`
@@ -496,13 +535,13 @@ ALTER TABLE `shproducts`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `St_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `St_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `trig`
 --
 ALTER TABLE `trig`
-  MODIFY `Triggerid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `Triggerid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Constraints for dumped tables
