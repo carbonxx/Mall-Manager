@@ -35,7 +35,7 @@ login_manager.login_view='login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return Employee.query.get(String(user_id))
+    return Employee.query.get(str(user_id))
 
 
 
