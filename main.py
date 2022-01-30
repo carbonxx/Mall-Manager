@@ -1,3 +1,4 @@
+from tokenize import String
 from sqlalchemy import Column
 from flask import request, g
 from werkzeug.urls import url_parse
@@ -23,7 +24,7 @@ local_server=True # setting localserver
 app = Flask(__name__)
 app.secret_key="swathi"
 
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/mallquest'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/mallquest1'
 db=SQLAlchemy(app)
 # CORS(app, supports_credentials=True, resources={r"/": {"origins": ""}})
 # app.config['CORS_HEADERS'] = 'Content-Type'
@@ -34,7 +35,7 @@ login_manager.login_view='login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return Employee.query.get(int(user_id))
+    return Employee.query.get(String(user_id))
 
 
 
@@ -46,9 +47,9 @@ def load_user(user_id):
 
 class Employee(UserMixin, db.Model):
     __tablename__ = 'employee'
-    E_id=db.Column(db.Integer, primary_key=True)
+    E_id=db.Column(db.String(10), primary_key=True)
     Ename=db.Column(db.String(20), nullable=False)
-    Eaddress=db.Column(db.String(20), nullable=False)
+    Eaddress=db.Column(db.String(50), nullable=False)
     Ephone=db.Column(db.Integer, nullable=False)
     Esalary=db.Column(db.Integer, nullable=False)
     Epass=db.Column(db.String(1000), nullable=False)
@@ -76,7 +77,7 @@ class Shop(db.Model):
     Shname=db.Column(db.String(20), nullable=False)
     Shphone=db.Column(db.Integer, nullable=False)
     Shaddress=db.Column(db.String(20), nullable=False)
-    E_id = db.Column(db.Integer,db.ForeignKey('employee.E_id'), nullable=False)
+    # E_id = db.Column(db.String(10),db.ForeignKey('employee.E_id'), nullable=False)
     C_id = db.Column(db.Integer,db.ForeignKey('customer.C_id'), nullable=False)
     
 class Stock(db.Model):
@@ -143,17 +144,33 @@ def login():
         user=Employee.query.filter_by(E_id=E_id).first()
 
         # if user and Epass:
-        if user and check_password_hash(user.Epass,Epass) and E_id=='1': #here E_id ==1 is just hardcoded to see whether the admin functionality working
+        if user == 'admin' and check_password_hash(user.Epass,Epass) :
             login_user(user)
             return redirect(url_for('home'))
 
+        elif user == 'GS\d\d\d' and check_password_hash(user.Epass,Epass) : 
+            login_user(user)
+            return redirect(url_for('grocery1'))
+        elif user == 'SS\d\d\d' and check_password_hash(user.Epass,Epass) :
+            login_user(user)
+            return redirect(url_for('stationary1'))
+        elif user == 'MS\d\d\d' and check_password_hash(user.Epass,Epass) :
+            login_user(user)
+            return redirect(url_for('med1'))
+        elif user == 'TS\d\d\d' and check_password_hash(user.Epass,Epass) :
+            login_user(user)
+            return redirect(url_for('toys1'))
+        elif user == 'CS\d\d\d'and check_password_hash(user.Epass,Epass)  :
+            login_user(user)
+            return redirect(url_for('clothing1'))
+        elif user == 'BS\d\d\d' and check_password_hash(user.Epass,Epass) :
+            login_user(user)
+            return redirect(url_for('bakery1'))
         else:
             #print('Invalid credentials')
-            alert(text='You Are Not Authorized To Access This System/Re-Enter Your Credentials', title='Access Denied', button='OK')
-            return render_template('login.html')
-        # print(EmployeeId,Password)
+            flash("invalid credentials","danger")
+            return render_template('login.html')    
     return render_template('login.html')
-
 
 @app.route('/register',methods=['POST','GET'])
 def register(): 
