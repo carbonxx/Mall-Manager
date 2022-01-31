@@ -207,6 +207,7 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/stationary',methods=['POST','GET'])
+@login_required
 def stationary():
     if request.method=='POST':
         # Stocks
@@ -223,6 +224,7 @@ def stationary():
     return render_template('stationary.html', query=query)
 
 @app.route('/med',methods=['POST','GET'])
+@login_required
 def med():
     if request.method=='POST':
         # Stocks
@@ -238,6 +240,7 @@ def med():
     return render_template('med.html', query=query)
 
 @app.route('/toys',methods=['POST','GET'])
+@login_required
 def toys():
     if request.method=='POST':
         # Stocks
@@ -253,6 +256,7 @@ def toys():
     return render_template('toys.html', query=query)
 
 @app.route('/bakery',methods=['POST','GET'])
+@login_required
 def bakery():
     if request.method=='POST':
         # Stocks
@@ -269,6 +273,7 @@ def bakery():
 
 
 @app.route('/clothing',methods=['POST','GET'])
+@login_required
 def clothing():
     if request.method=='POST':
         # Stocks
@@ -284,6 +289,7 @@ def clothing():
     return render_template('clothing.html', query=query)
 
 @app.route('/grocery',methods=['POST','GET'])
+@login_required
 def grocery():
     if request.method=='POST':
         # Stocks
@@ -299,6 +305,7 @@ def grocery():
     return render_template('grocery.html', query=query)
 
 @app.route('/employee',methods=['POST','GET'])
+@login_required
 def employee():
     if request.method=='POST':
         E_id=request.form.get('E_id')
@@ -312,6 +319,7 @@ def employee():
     return render_template('employee.html', query=query)
 
 @app.route('/customer',methods=['POST','GET'])
+@login_required
 def customer():
     if request.method=='POST':
         C_id=request.form.get('C_id')
@@ -323,6 +331,7 @@ def customer():
     return render_template('customer.html', query=query)
 
 @app.route('/manufacturer',methods=['POST','GET'])
+@login_required
 def manufacturer():
     if request.method=='POST':
         M_id=request.form.get('M_id')
@@ -334,6 +343,7 @@ def manufacturer():
     return render_template('manufacturer.html', query=query)
 
 @app.route('/shop',methods=['POST','GET'])
+@login_required
 def shop():
     if request.method=='POST':
         Sh_id=request.form.get('Sh_id')
@@ -347,6 +357,7 @@ def shop():
     return render_template('shop.html', query=query)
 
 @app.route('/stock',methods=['POST','GET'])
+@login_required
 def stock():
     if request.method=='POST':
         St_id=request.form.get('St_id')
@@ -360,6 +371,7 @@ def stock():
     return render_template('stock.html', query=query)
 
 @app.route('/branch',methods=['POST','GET'])
+@login_required
 def branch():
     if request.method=='POST':
         M_id=request.form.get('M_id')
@@ -423,6 +435,7 @@ def addcustomer():
 #it should take him to the grocery1.html
 
 @app.route('/stationary1',methods=['POST','GET'])
+@login_required
 def stationary1():
     if request.method=='POST':
         # Stocks
@@ -439,6 +452,7 @@ def stationary1():
     return render_template('stationary1.html', query=query)
 
 @app.route('/med1',methods=['POST','GET'])
+@login_required
 def med1():
     if request.method=='POST':
         # Stocks
@@ -454,6 +468,7 @@ def med1():
     return render_template('med1.html', query=query)
 
 @app.route('/toys1',methods=['POST','GET'])
+@login_required
 def toys1():
     if request.method=='POST':
         # Stocks
@@ -469,6 +484,7 @@ def toys1():
     return render_template('toys1.html', query=query)
 
 @app.route('/bakery1',methods=['POST','GET'])
+@login_required
 def bakery1():
     if request.method=='POST':
         # Stocks
@@ -485,6 +501,7 @@ def bakery1():
 
 
 @app.route('/clothing1',methods=['POST','GET'])
+@login_required
 def clothing1():
     if request.method=='POST':
         # Stocks
@@ -500,6 +517,7 @@ def clothing1():
     return render_template('clothing1.html', query=query)
 
 @app.route('/grocery1',methods=['POST','GET'])
+@login_required
 def grocery1():
     if request.method=='POST':
         # Stocks
