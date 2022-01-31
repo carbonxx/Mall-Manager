@@ -14,6 +14,7 @@ from pymsgbox import *
 from werkzeug.security import generate_password_hash,check_password_hash
 import json
 import pymysql,json
+import re
 pymysql.install_as_MySQLdb()
 # from flask_cors import CORS
 
@@ -142,33 +143,34 @@ def login():
         Epass=request.form.get('Epass')
         print(Epass)
         user=Employee.query.filter_by(E_id=E_id).first()
+        print(user)
 
         # if user and Epass:
-        if user == 'admin' and check_password_hash(user.Epass,Epass) :
+        if E_id == "admin"  and check_password_hash(user.Epass,Epass) :
+            
             login_user(user)
             return redirect(url_for('home'))
-
-        elif user == 'GS\d\d\d' and check_password_hash(user.Epass,Epass) : 
+        elif E_id[:2] == 'GS' and check_password_hash(user.Epass,Epass) : 
             login_user(user)
             return redirect(url_for('grocery1'))
-        elif user == 'SS\d\d\d' and check_password_hash(user.Epass,Epass) :
+        elif E_id[:2] == 'SS' and check_password_hash(user.Epass,Epass) :
             login_user(user)
             return redirect(url_for('stationary1'))
-        elif user == 'MS\d\d\d' and check_password_hash(user.Epass,Epass) :
+        elif E_id[:2] == 'MS' and check_password_hash(user.Epass,Epass) :
             login_user(user)
             return redirect(url_for('med1'))
-        elif user == 'TS\d\d\d' and check_password_hash(user.Epass,Epass) :
+        elif E_id[:2] == 'TS' and check_password_hash(user.Epass,Epass) :
             login_user(user)
             return redirect(url_for('toys1'))
-        elif user == 'CS\d\d\d'and check_password_hash(user.Epass,Epass)  :
+        elif E_id[:2] == 'CS'and check_password_hash(user.Epass,Epass)  :
             login_user(user)
             return redirect(url_for('clothing1'))
-        elif user == 'BS\d\d\d' and check_password_hash(user.Epass,Epass) :
+        elif E_id[:2] == 'BS' and check_password_hash(user.Epass,Epass) :
             login_user(user)
             return redirect(url_for('bakery1'))
         else:
             #print('Invalid credentials')
-            flash("invalid credentials","danger")
+            alert(text='User ID Already Exists!', title='Message Alert', button='OK')
             return render_template('login.html')    
     return render_template('login.html')
 

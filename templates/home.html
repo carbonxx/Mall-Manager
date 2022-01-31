@@ -41,9 +41,12 @@
           <a href="#home">HOME</a>
           <a href="#category">CATEGORY</a>
           <a href="/orders">ORDERS</a>
-          <a href="/triggers"><label for="" class="show-triggers">TRANSACTIONS</label></a>
+          <a href="/triggers"
+            ><label for="" class="show-triggers">STOCK LOGS</label></a
+          >
           <div class="dropdown">
-            <button class="dropbtn"> MORE INFO
+            <button class="dropbtn">
+              MORE INFO
               <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-content">
@@ -57,7 +60,6 @@
           </div>
         </div>
         <button class="logout"><a href="/logout">Logout</a></button>
-       
       </div>
     </section>
     <img src="static/images/homeicon.png" class="homeimg" />
@@ -187,22 +189,22 @@
 
     <script type="text/javascript">
       function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-
-// Close the dropdown menu if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-        }
+        document.getElementById("myDropdown").classList.toggle("show");
       }
-    }
-  }
+
+      // Close the dropdown menu if the user clicks outside of it
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropbtn")) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains("show")) {
+              openDropdown.classList.remove("show");
+            }
+          }
+        }
+      };
     </script>
   </body>
 </html>
