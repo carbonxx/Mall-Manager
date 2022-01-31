@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 06:49 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Jan 31, 2022 at 07:57 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mallquest1`
+-- Database: `mallquest`
 --
 
 -- --------------------------------------------------------
@@ -121,7 +121,7 @@ CREATE TABLE `employee` (
   `E_id` varchar(10) NOT NULL,
   `Ename` varchar(20) NOT NULL,
   `Eaddress` varchar(50) NOT NULL,
-  `Ephone` int(10) NOT NULL,
+  `Ephone` bigint(10) NOT NULL,
   `Esalary` double NOT NULL,
   `Epass` varchar(10000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -131,11 +131,13 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`E_id`, `Ename`, `Eaddress`, `Ephone`, `Esalary`, `Epass`) VALUES
-('admin', 'Bhasker', 'Puttur,Mangalore', 0, 0, 'pbkdf2:sha256:260000$f13cSOv4KUfJ44Lw$bc1a6543ddfa111b43ec66340d689123395b99de86d4b1ac09f2be576656f3ba'),
-('GS001', 'Suresh', 'Adyar,Mangalore', 0, 0, 'pbkdf2:sha256:260000$XPcecV07GeIx4wth$eb03a1bb6d8285615024fdc91cf965f159a3b482a989f07f8421fdd2ea3d0f5c'),
-('GS002', 'Ramesh', 'Adyar,Mangalore', 0, 0, 'pbkdf2:sha256:260000$Lh0zImCHDAomVhUP$8b198e8dc6cc35c7cdee1d2f8db083987dff10fcc392404655ae212c25ccd46e'),
-('GT001', 'Ramesh', 'Adyar,Mangalore', 0, 0, 'pbkdf2:sha256:260000$XbrwQynb7chz3Zv1$fa6f17fc53c6701cf155eb926634b56dbb9bc5b022d7023e4f3b69305adc2250'),
-('SS001', 'Abc', 'asd', 0, 0, 'pbkdf2:sha256:260000$D7AOmYV59brNjsu3$bddbd18d22b3ca9f2c7ee412ec51decb25158ffd2a5b3b8063f14ee44036c871');
+('admin', 'Bhasker', 'Puttur,Mangalore', 9878675451, 20000, 'pbkdf2:sha256:260000$f13cSOv4KUfJ44Lw$bc1a6543ddfa111b43ec66340d689123395b99de86d4b1ac09f2be576656f3ba'),
+('BS001', 'Ryan', 'Surat', 7865634156, 23000, 'pbkdf2:sha256:260000$IfgKJACUoxMcyqpa$024c28221f106c6d38a4952d160a5d6ee9ed0162c0920625b9083550285c23af'),
+('CS001', 'Manish Malhotra', 'Kolkata', 8712323456, 10050, 'pbkdf2:sha256:260000$avj2CLVvrR1XBK0z$5cb97e3b7efdef7c86547ce8a379a78900436e6b0babcdef5e61eadfac9dd254'),
+('GS001', 'George', 'Puttur, Mangalore', 9234567890, 11000, 'pbkdf2:sha256:260000$JSfq85Ck0uD2bYjL$3ba31e7aab350baa9479b72821fe4f2529c1a2839aa84d0c30ef8d3d4d9bd9fc'),
+('MS001', 'Richard', 'Anna Nagar, Bangalore', 8900987654, 20180, 'pbkdf2:sha256:260000$jgq21Rh7nb0QSCae$82e5da13b8843c79711127f5d6d1223fbbfbf053c079313fc0ac36e51ea64264'),
+('SS001', 'Harsh', 'Adyar, Mangalore', 6412345678, 12090, 'pbkdf2:sha256:260000$RsHSA7DZJDvZSnZQ$6e1d086e93b03333f22e1c0b876274564c9ba51dc73e295315274196f50fa992'),
+('TS001', 'Kevin', 'Adyar, Mangalore', 9078656432, 11000, 'pbkdf2:sha256:260000$SOZoXVlHfkOLjEUu$7d3345bfc0e629a190f1148aad12baa7c4a9f3aa25557fc8d3abb038cd06e7a7');
 
 -- --------------------------------------------------------
 
@@ -232,20 +234,21 @@ CREATE TABLE `shop` (
   `Shname` varchar(20) CHARACTER SET latin1 NOT NULL,
   `Shphone` int(15) NOT NULL,
   `Shaddress` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `C_id` int(3) NOT NULL
+  `C_id` int(3) NOT NULL,
+  `E_id` varchar(10) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `shop`
 --
 
-INSERT INTO `shop` (`Sh_id`, `Shname`, `Shphone`, `Shaddress`, `C_id`) VALUES
-(1, 'Stationary Store', 789456123, 'Mangalore', 9),
-(2, 'Med Plus', 786765611, 'Mangalore', 2),
-(3, 'Toys Store', 678112345, 'Mangalore', 15),
-(4, 'Bakery Store', 999445678, 'Mangalore', 5),
-(5, 'Clothing Store', 677889034, 'Mangalore', 3),
-(6, 'Grocery Store', 894434567, 'Mangalore', 11);
+INSERT INTO `shop` (`Sh_id`, `Shname`, `Shphone`, `Shaddress`, `C_id`, `E_id`) VALUES
+(1, 'Stationary Store', 789456123, 'Mangalore', 9, 'SS001'),
+(2, 'Med Plus', 786765611, 'Mangalore', 2, 'MS001'),
+(3, 'Toys Store', 678112345, 'Mangalore', 15, 'TS001'),
+(4, 'Bakery Store', 999445678, 'Mangalore', 5, 'BS001'),
+(5, 'Clothing Store', 677889034, 'Mangalore', 3, 'CS001'),
+(6, 'Grocery Store', 894434567, 'Mangalore', 11, 'GS001');
 
 -- --------------------------------------------------------
 
@@ -452,7 +455,8 @@ ALTER TABLE `producedby`
 --
 ALTER TABLE `shop`
   ADD PRIMARY KEY (`Sh_id`),
-  ADD KEY `C_id` (`C_id`);
+  ADD KEY `C_id` (`C_id`),
+  ADD KEY `E_id` (`E_id`);
 
 --
 -- Indexes for table `shproducts`

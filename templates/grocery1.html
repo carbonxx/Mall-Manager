@@ -1,10 +1,12 @@
 {% extends 'layout.html' %}
 {% block body %} 
+<h1 class="shname">Grocery Store</h1>
 <div class="center">
     <input type="checkbox" id="show">
     <div class="buttons">
         <label for="show" class="show-btn" id="btn" onclick="toggle()"> PURCHASE</label>
         <label for="" class="show-orders"><a href="/addcustomer">ADD CUSTOMERS</a></label>
+        <label for="" class="show-log"><a href="/login">Logout</a></label>
     </div>
 <form id="register" action="/grocery1" method="POST">
 {% endblock %}

@@ -152,7 +152,7 @@ table > tbody > tr:hover {
   position: absolute;
   top: 3rem;
   right: 0;
-  margin-right: 32rem;
+  margin-right: 40rem;
   padding: 1.5rem;
   display: inline-block;
   border-radius: 1.5rem;
@@ -177,7 +177,7 @@ table > tbody > tr:hover {
   position: absolute;
   top: 3rem;
   right: 0;
-  margin-right: 10rem;
+  margin-right: 18rem;
   padding: 1.5rem;
   display: inline-block;
   border-radius: 1.5rem;
@@ -208,7 +208,47 @@ table > tbody > tr:hover {
   background: linear-gradient(45deg, #e41a9a, #83a8f7);
 }
 
+.show-log {
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  margin-right: 5rem;
+  padding: 1.5rem;
+  display: inline-block;
+  border-radius: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(45deg, #83a8f7, #e41a9a);
+  box-shadow: 0.3rem 0.8rem 2.2rem rgba(105, 30, 75, 0.15);
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  border: none;
+  cursor: pointer;
+}
 
+.show-log a{
+  text-decoration: none;
+  color: black;
+}
+
+.show-log :hover {
+  border: none;
+  color: rgb(255, 255, 255);
+}
+
+.show-log a :hover {
+  border: none;
+  color: rgb(255, 255, 255);
+  background: linear-gradient(45deg, #e41a9a, #83a8f7);
+}
+
+.shname{
+  color: #232d60;;
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+}
 #show:checked ~ .container1 {
   display: block;
 }
