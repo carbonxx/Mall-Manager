@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2022 at 07:02 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Jan 31, 2022 at 06:49 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mallquest`
+-- Database: `mallquest1`
 --
 
 -- --------------------------------------------------------
@@ -118,25 +118,24 @@ INSERT INTO `customer` (`C_id`, `Cname`, `Caddress`, `Cphone`) VALUES
 --
 
 CREATE TABLE `employee` (
-  `E_id` int(3) NOT NULL,
-  `Ename` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `Eaddress` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `E_id` varchar(10) NOT NULL,
+  `Ename` varchar(20) NOT NULL,
+  `Eaddress` varchar(50) NOT NULL,
   `Ephone` int(10) NOT NULL,
   `Esalary` double NOT NULL,
-  `Epass` varchar(1000) CHARACTER SET latin1 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Epass` varchar(10000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`E_id`, `Ename`, `Eaddress`, `Ephone`, `Esalary`, `Epass`) VALUES
-(1, 'Kevin', 'Bangalore', 0, 0, 'pbkdf2:sha256:260000$4dGaAzhCWAGM7YCf$d8c826d20d100cc7124d9fa919b45a8db1ddcce1480ae21901b6ffed5fdb8cac'),
-(2, 'Sanjay', 'Bangalore', 0, 0, 'pbkdf2:sha256:260000$GFQpE75qdZEjmYlc$8140538f5cd83cf13a2b4d4fef06b7e3165e0c2edbc31bafbd7836cc8168b6b6'),
-(3, 'George', 'Kolkata', 0, 0, 'pbkdf2:sha256:260000$fZ4YcHCfDFKE2tT8$d8b4f578b816af0355ded8589ac89f7699f778a2d3c2c75c7f75b72053e7662b'),
-(4, 'Richard', 'Bangalore', 0, 0, 'pbkdf2:sha256:260000$MOD9sdpFxSRy8KaZ$6f324dff95a9a095f48cae6c347bde1c42bbfb63b5fd0edc4ae95d0447cee245'),
-(5, 'Ryan', 'Mangalore', 0, 0, 'pbkdf2:sha256:260000$WBsRDSwgkApvSs2Q$ba2a31b772aff7be47fdbae54303a4cd3022b8a54760c9fbcfbc8c166defde2a'),
-(6, 'Nicholas', 'Surat', 0, 0, 'pbkdf2:sha256:260000$lzbpeMrZiQ0oSb3J$4fb2e5350cc11b0b5f8f0e4a52cc4d8deaa7863a074755499d378eed4f4cb592');
+('admin', 'Bhasker', 'Puttur,Mangalore', 0, 0, 'pbkdf2:sha256:260000$f13cSOv4KUfJ44Lw$bc1a6543ddfa111b43ec66340d689123395b99de86d4b1ac09f2be576656f3ba'),
+('GS001', 'Suresh', 'Adyar,Mangalore', 0, 0, 'pbkdf2:sha256:260000$XPcecV07GeIx4wth$eb03a1bb6d8285615024fdc91cf965f159a3b482a989f07f8421fdd2ea3d0f5c'),
+('GS002', 'Ramesh', 'Adyar,Mangalore', 0, 0, 'pbkdf2:sha256:260000$Lh0zImCHDAomVhUP$8b198e8dc6cc35c7cdee1d2f8db083987dff10fcc392404655ae212c25ccd46e'),
+('GT001', 'Ramesh', 'Adyar,Mangalore', 0, 0, 'pbkdf2:sha256:260000$XbrwQynb7chz3Zv1$fa6f17fc53c6701cf155eb926634b56dbb9bc5b022d7023e4f3b69305adc2250'),
+('SS001', 'Abc', 'asd', 0, 0, 'pbkdf2:sha256:260000$D7AOmYV59brNjsu3$bddbd18d22b3ca9f2c7ee412ec51decb25158ffd2a5b3b8063f14ee44036c871');
 
 -- --------------------------------------------------------
 
@@ -233,7 +232,6 @@ CREATE TABLE `shop` (
   `Shname` varchar(20) CHARACTER SET latin1 NOT NULL,
   `Shphone` int(15) NOT NULL,
   `Shaddress` varchar(20) CHARACTER SET latin1 NOT NULL,
-  `E_id` int(3) NOT NULL,
   `C_id` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -241,13 +239,13 @@ CREATE TABLE `shop` (
 -- Dumping data for table `shop`
 --
 
-INSERT INTO `shop` (`Sh_id`, `Shname`, `Shphone`, `Shaddress`, `E_id`, `C_id`) VALUES
-(1, 'Stationary Store', 789456123, 'Mangalore', 2, 9),
-(2, 'Med Plus', 786765611, 'Mangalore', 3, 2),
-(3, 'Toys Store', 678112345, 'Mangalore', 5, 15),
-(4, 'Bakery Store', 999445678, 'Mangalore', 1, 5),
-(5, 'Clothing Store', 677889034, 'Mangalore', 4, 3),
-(6, 'Grocery Store', 894434567, 'Mangalore', 6, 11);
+INSERT INTO `shop` (`Sh_id`, `Shname`, `Shphone`, `Shaddress`, `C_id`) VALUES
+(1, 'Stationary Store', 789456123, 'Mangalore', 9),
+(2, 'Med Plus', 786765611, 'Mangalore', 2),
+(3, 'Toys Store', 678112345, 'Mangalore', 15),
+(4, 'Bakery Store', 999445678, 'Mangalore', 5),
+(5, 'Clothing Store', 677889034, 'Mangalore', 3),
+(6, 'Grocery Store', 894434567, 'Mangalore', 11);
 
 -- --------------------------------------------------------
 
@@ -428,7 +426,7 @@ ALTER TABLE `customer`
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
-  ADD PRIMARY KEY (`E_id`);
+  ADD PRIMARY KEY (`E_id`) USING BTREE;
 
 --
 -- Indexes for table `manufacturer`
@@ -454,8 +452,7 @@ ALTER TABLE `producedby`
 --
 ALTER TABLE `shop`
   ADD PRIMARY KEY (`Sh_id`),
-  ADD KEY `C_id` (`C_id`),
-  ADD KEY `E_id` (`E_id`);
+  ADD KEY `C_id` (`C_id`);
 
 --
 -- Indexes for table `shproducts`
@@ -502,12 +499,6 @@ ALTER TABLE `customer`
   MODIFY `C_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT for table `employee`
---
-ALTER TABLE `employee`
-  MODIFY `E_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `manufacturer`
 --
 ALTER TABLE `manufacturer`
@@ -551,8 +542,7 @@ ALTER TABLE `trig`
 -- Constraints for table `shop`
 --
 ALTER TABLE `shop`
-  ADD CONSTRAINT `C_id` FOREIGN KEY (`C_id`) REFERENCES `customer` (`C_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `E_id` FOREIGN KEY (`E_id`) REFERENCES `employee` (`E_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `C_id` FOREIGN KEY (`C_id`) REFERENCES `customer` (`C_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stock`
