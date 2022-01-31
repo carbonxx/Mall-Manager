@@ -25,7 +25,7 @@ local_server=True # setting localserver
 app = Flask(__name__)
 app.secret_key="swathi"
 
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/mallquest1'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/mallquest'
 db=SQLAlchemy(app)
 # CORS(app, supports_credentials=True, resources={r"/": {"origins": ""}})
 # app.config['CORS_HEADERS'] = 'Content-Type'
@@ -170,7 +170,7 @@ def login():
             return redirect(url_for('bakery1'))
         else:
             #print('Invalid credentials')
-            alert(text='User ID Already Exists!', title='Message Alert', button='OK')
+            alert(text='Invalid credentials', title='Message Alert', button='OK')
             return render_template('login.html')    
     return render_template('login.html')
 
