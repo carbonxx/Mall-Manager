@@ -384,8 +384,8 @@ def edit(St_id):
         # M_id=request.form.get('M_id')
         db.engine.execute(f"UPDATE `stock` SET `St_id` = '{St_id}', `Stname` = '{Stname}' , `Stamount` = '{Stamount}', `Stbarcode` = '{Stbarcode}', `Sh_id` = '{Sh_id}' WHERE `stock`.`St_id` = {St_id}")
         # alert(text='You\'ve Success)
-        return redirect('/stationary')
-    return render_template('/edit.html',posts=posts)
+        return redirect('/edit/{St_id}')
+    return render_template('edit.html',posts=posts)
  #delete
 
 @app.route("/delete/<string:St_id>",methods=['POST','GET'])
@@ -434,6 +434,8 @@ def stationary1():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+        if new_order:
+            alert(text='Order placed!', title='Message Alert', button='OK')
     query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=1")
 
     return render_template('stationary1.html', query=query)
@@ -450,6 +452,8 @@ def med1():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+        if new_order:
+            alert(text='Order placed!', title='Message Alert', button='OK')
     query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=2")
     return render_template('med1.html', query=query)
 
@@ -465,6 +469,8 @@ def toys1():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+        if new_order:
+            alert(text='Order placed!', title='Message Alert', button='OK')
     query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=3")
     return render_template('toys1.html', query=query)
 
@@ -480,8 +486,10 @@ def bakery1():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+        if new_order:
+            alert(text='Order placed!', title='Message Alert', button='OK')
     query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=4")
-    return render_template('bakery.html', query=query)
+    return render_template('bakery1.html', query=query)
 
 
 @app.route('/clothing1',methods=['POST','GET'])
@@ -496,6 +504,8 @@ def clothing1():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+        if new_order:
+            alert(text='Order placed!', title='Message Alert', button='OK')
     query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=5")
     return render_template('clothing1.html', query=query)
 
@@ -511,6 +521,8 @@ def grocery1():
         C_id=request.form.get('C_id')
         # M_id=request.form.get('M_id')
         new_order=db.engine.execute(f"INSERT INTO `orders` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `C_id`) VALUES ('{St_id}','{Stname}','{Stamount}','{Stbarcode}' ,'{Sh_id}','{C_id}')")
+        if new_order:
+            alert(text='Order placed!', title='Message Alert', button='OK')
     query=db.engine.execute("SELECT * FROM `stock` WHERE Sh_id=6")
     return render_template('grocery1.html', query=query)
 app.run(debug=True)

@@ -249,6 +249,7 @@ table > tbody > tr:hover {
   font-weight: bold;
   text-align: center;
 }
+
 #show:checked ~ .container1 {
   display: block;
 }
