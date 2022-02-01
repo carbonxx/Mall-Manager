@@ -384,14 +384,16 @@ def edit(St_id):
         # M_id=request.form.get('M_id')
         db.engine.execute(f"UPDATE `stock` SET `St_id` = '{St_id}', `Stname` = '{Stname}' , `Stamount` = '{Stamount}', `Stbarcode` = '{Stbarcode}', `Sh_id` = '{Sh_id}' WHERE `stock`.`St_id` = {St_id}")
         # alert(text='You\'ve Success)
-        return redirect('/edit/{St_id}')
+        # return redirect('/edit/{Stname}')
+        # return redirect(request.referrer)
+        alert(text='Order Succesfully Updated!', title='Message Alert', button='OK')
     return render_template('edit.html',posts=posts)
  #delete
 
 @app.route("/delete/<string:St_id>",methods=['POST','GET'])
 def delete(St_id):
     db.engine.execute(f"DELETE FROM `stock` WHERE `stock`.`St_id`={St_id}")
-    return redirect('/triggers')
+    return redirect(request.referrer)
 # Trigger page required!!
 
 @app.route('/triggers')
