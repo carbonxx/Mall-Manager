@@ -22,7 +22,28 @@
 
   {%block body%}
   {%endblock%}
-  
+  <div class="container">
+    <label>Stock Name</label>
+    <input type="text" name="Stname" id="Stname" placeholder="Enter the stock name" required />
+  </div>
+  <div class="container">
+    <label>Stock Amount</label>
+    <input type="text" name="Stamount" id="Stamount" placeholder="Enter the stock amount" required />
+  </div>
+  <div class="container">
+    <label>Shop ID</label>
+    <input type="text" name="Sh_id" id="Sh_id" placeholder="Enter the shop ID" required />
+  </div>
+  <div class="container">
+    <label>Customer ID</label>
+    <input type="text" name="C_id" id="C_id" placeholder="Enter the customer ID" required />
+  </div>
+
+  <div class="container">
+    <input type="submit" name="submit" value="Submit" id="submit" />
+  </div>
+  </form>
+  </div>
   </div>
 
   <div class="tablecreate" id="blur">
@@ -37,8 +58,8 @@
           <th scope="col">Stbarcode</th>
           <th scope="col">Sh_id</th>
           <!-- <th scope="col">M_id</th> -->
-          <!-- <th scope="col">EDIT</th>
-          <th scope="col">DELETE</th> -->
+          <th scope="col">EDIT</th>
+          <th scope="col">DELETE</th>
 
         </tr>
       </thead>
@@ -50,13 +71,13 @@
           <td>{{post.Stamount}}</td>
           <td>{{post.Stbarcode}}</td>
           <td>{{post.Sh_id}}</td>
-          <!-- <td>
+          <td>
             <div class="edit_btn"><a href="/edit/{{post.St_id}}">Edit </a></div>
           </td>
           <td>
             <div class="delete_btn" onclick="return confirm('Are you sure to Delete data');"><a
                 href="/delete/{{post.St_id}}">Delete</a></div>
-          </td> -->
+          </td>
         </tr>
         {% endfor %}
       </tbody>
@@ -71,8 +92,7 @@
       var btn = document.getElementById('btn');
       btn.classList.toggle('active')
     }
-   
-    
+  
   </script>
 </body>
 

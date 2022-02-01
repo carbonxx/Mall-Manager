@@ -243,12 +243,13 @@ table > tbody > tr:hover {
   background: linear-gradient(45deg, #e41a9a, #83a8f7);
 }
 
-.shname{
+.stname{
   color: #232d60;;
   font-size: 5rem;
   font-weight: bold;
   text-align: center;
 }
+
 #show:checked ~ .container1 {
   display: block;
 }

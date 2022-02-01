@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 07:57 AM
+-- Generation Time: Jan 31, 2022 at 10:46 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -199,7 +199,11 @@ INSERT INTO `orders` (`Ord_no`, `Sh_id`, `St_id`, `Stbarcode`, `Stname`, `Stamou
 (3, 1, 2, 7845123652, 'Eraser', '10', 3),
 (4, 1, 2, 7845123652, 'Eraser', '10', 3),
 (5, 1, 0, 0, 'Scale', '10', 3),
-(6, 1, 1, 512345000107, 'Pencils', '20', 1);
+(6, 1, 1, 512345000107, 'Pencils', '20', 1),
+(7, 4, 0, 0, 'Chips', '50.0', 5),
+(8, 4, 0, 0, 'Muffins', '30.0', 5),
+(9, 4, 0, 0, 'Muffins', '30.0', 5),
+(10, 4, 0, 0, 'Muffins', '30.0', 5);
 
 -- --------------------------------------------------------
 
@@ -305,12 +309,13 @@ INSERT INTO `stock` (`St_id`, `Stname`, `Stamount`, `Stbarcode`, `Sh_id`, `M_id`
 (13, 'Dolo650', 20, 234576890187, 2, 6),
 (14, 'Blocks', 100, 567789013425, 3, 9),
 (16, 'Muffins', 30, 890653344567, 4, 11),
-(17, 'Jacket', 600, 667789056434, 5, 1),
+(17, 'Jacket', 550, 667789056434, 5, 1),
 (18, 'Socks', 30, 454456778901, 5, 1),
 (19, 'Raddish', 45, 345678987656, 6, 4),
 (20, 'Tomatoes', 80, 567890987615, 6, 4),
 (21, 'Scale', 10, 233445567889, 1, 10),
-(22, 'Paracetomol', 20, 345678767890, 2, 15);
+(22, 'Paracetomol', 20, 345678767890, 2, 15),
+(23, 'Shorts', 270, 912456789099, 5, 8);
 
 --
 -- Triggers `stock`
@@ -384,7 +389,24 @@ INSERT INTO `trig` (`Triggerid`, `St_id`, `Stname`, `Stamount`, `Stbarcode`, `Ac
 (41, 3, 'Scale', 10, 233445567889, 'Stock Deleted!', '2022-01-27 14:31:11'),
 (42, 15, 'Cups', 60, 987656543122, 'Stock Deleted!', '2022-01-27 14:35:30'),
 (43, 21, 'Scale', 10, 233445567889, 'Stock Inserted!', '2022-01-27 14:37:20'),
-(44, 22, 'Paracetomol', 20, 345678767890, 'Stock Inserted!', '2022-01-28 15:34:57');
+(44, 22, 'Paracetomol', 20, 345678767890, 'Stock Inserted!', '2022-01-28 15:34:57'),
+(45, 23, 'Shorts', 200, 912456789099, 'Stock Inserted!', '2022-01-31 14:49:45'),
+(46, 23, 'Shorts', 150, 912456789099, 'Stock Info Updated!', '2022-01-31 14:50:02'),
+(47, 23, 'Shorts', 150, 912456789099, 'Stock Info Updated!', '2022-01-31 14:54:15'),
+(48, 17, 'Jacket', 500, 667789056434, 'Stock Info Updated!', '2022-01-31 14:55:40'),
+(49, 17, 'Jacket', 500, 667789056434, 'Stock Info Updated!', '2022-01-31 14:57:59'),
+(50, 17, 'Jacket', 500, 667789056434, 'Stock Info Updated!', '2022-01-31 14:58:10'),
+(51, 17, 'Jacket', 500, 667789056434, 'Stock Info Updated!', '2022-01-31 14:59:10'),
+(52, 9, 'Tshirt', 300, 856154234567, 'Stock Info Updated!', '2022-01-31 14:59:37'),
+(53, 9, 'Tshirt', 300, 856154234567, 'Stock Info Updated!', '2022-01-31 15:01:40'),
+(54, 9, 'Tshirt', 350, 856154234567, 'Stock Info Updated!', '2022-01-31 15:01:49'),
+(55, 17, 'Jacket', 550, 667789056434, 'Stock Info Updated!', '2022-01-31 15:02:17'),
+(56, 23, 'Shorts', 250, 912456789099, 'Stock Info Updated!', '2022-01-31 15:02:45'),
+(57, 18, 'Socks', 50, 454456778901, 'Stock Info Updated!', '2022-01-31 15:05:30'),
+(58, 18, 'Socks', 40, 454456778901, 'Stock Info Updated!', '2022-01-31 15:05:58'),
+(59, 18, 'Socks', 50, 454456778901, 'Stock Info Updated!', '2022-01-31 15:10:32'),
+(60, 18, 'Socks', 30, 454456778901, 'Stock Info Updated!', '2022-01-31 15:11:00'),
+(61, 23, 'Shorts', 270, 912456789099, 'Stock Info Updated!', '2022-01-31 15:13:32');
 
 -- --------------------------------------------------------
 
@@ -512,7 +534,7 @@ ALTER TABLE `manufacturer`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `Ord_no` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Ord_no` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `shop`
@@ -530,13 +552,13 @@ ALTER TABLE `shproducts`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `St_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `St_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `trig`
 --
 ALTER TABLE `trig`
-  MODIFY `Triggerid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `Triggerid` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- Constraints for dumped tables
