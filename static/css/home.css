@@ -32,7 +32,7 @@ html {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-image: url(../images/homebg.png); 
+  background-image: url(../images/homebg.png);
   background-position: cover;
   background-size: cover;
   padding-left: 5%;
@@ -44,12 +44,12 @@ h4 {
 }
 
 .navbar {
-    width: 100%;
-    height: 10vh;
-    /* margin-left: 16rem;   */
-    display: flex;
-    align-items: center;
-    place-items: center;
+  width: 100%;
+  height: 10vh;
+  /* margin-left: 16rem;   */
+  display: flex;
+  align-items: center;
+  place-items: center;
 }
 
 /* Links inside the navbar */
@@ -59,11 +59,10 @@ h4 {
   font-weight: 600;
   color: #232d60;
   text-align: center;
-  padding: 1.4rem 3rem;;
+  padding: 1.4rem 3rem;
   text-decoration: none;
-  
 }
-.navbar a:hover{
+.navbar a:hover {
   color: #e41a9a;
 }
 
@@ -83,17 +82,17 @@ h4 {
   color: #232d60;
   padding: 1.4rem 1.6rem;
   background-color: inherit;
-  cursor: pointer;  
+  cursor: pointer;
 }
 
-.dropdown .dropbtn:hover{
+.dropdown .dropbtn:hover {
   color: #e41a9a;
 }
 /* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-image: url(../images/homebg.png); 
+  background-image: url(../images/homebg.png);
   min-width: 160px;
   /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
   z-index: 1;
@@ -113,7 +112,7 @@ h4 {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block;
-} 
+}
 
 .logout {
   position: relative;
@@ -130,7 +129,6 @@ h4 {
   letter-spacing: 0.2rem;
   border: none;
   cursor: pointer;
-
 }
 
 .logout a:hover {
@@ -162,7 +160,7 @@ h4 {
   padding-bottom: 2rem;
 }
 
-.show-triggers{
+.show-triggers {
   cursor: pointer;
 }
 
@@ -206,7 +204,7 @@ h4 {
   display: block;
   width: 100%;
   height: 40rem;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .card-content {
